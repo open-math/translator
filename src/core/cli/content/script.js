@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.buildScripts = void 0;
+const esbuild_1 = __importDefault(require("esbuild"));
+const build_1 = require("./build");
+function buildScripts() {
+    esbuild_1.default.buildSync({
+        entryPoints: ['content/global/script/index.ts'],
+        outfile: 'dist/content/script.js',
+        charset: 'utf8',
+        bundle: true,
+        minify: !build_1.IS_DEV,
+        sourcemap: build_1.IS_DEV,
+        globalName: 'OMathContent'
+    });
+}
+exports.buildScripts = buildScripts;
