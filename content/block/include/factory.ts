@@ -31,6 +31,6 @@ export class VFInclude extends StringViewFactory<Include>
         if (!unique)
             throw new Error(`Can't find unique with id '${product.id}'!`);
 
-        return this.renderer.renderBlocks([unique]);
+        return await this.renderer.renderBlocks(unique);
     }
 }

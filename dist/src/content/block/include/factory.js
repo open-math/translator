@@ -25,7 +25,7 @@ class VFInclude extends viewFactory_1.StringViewFactory {
         let unique = await Helper_1.default.getFrom(this.renderer).getUnique(product.id);
         if (!unique)
             throw new Error(`Can't find unique with id '${product.id}'!`);
-        return this.renderer.renderBlocks([unique]);
+        return await this.renderer.renderBlocks(unique);
     }
 }
 exports.VFInclude = VFInclude;

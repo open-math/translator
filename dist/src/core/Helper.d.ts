@@ -7,7 +7,7 @@ export default abstract class Helper {
         width: number;
         height: number;
     }>;
-    abstract getUnique(id: string): Promise<Block>;
+    abstract getUnique(id: string): Promise<Block[]>;
     abstract i18n(phrase: string): string;
     static getFrom(obj: object): Helper;
 }
