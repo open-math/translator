@@ -1,0 +1,123 @@
+@use 'def/size';
+@use 'include/scroll';
+@use 'include/util';
+
+[data-content]
+{
+    .gallery
+    {
+        display: flex;
+        flex-direction: column;
+        gap: size.$gap;
+
+        > .selector
+        {
+            display: flex;
+
+            border-top: 1px dashed var(--c_border);
+            border-bottom: 1px dashed var(--c_border);
+            overflow: auto;
+
+            @extend %scrollbar;
+            transform: rotateX(180deg);
+
+            > .inner
+            {
+                transform: rotateX(180deg);
+
+                display: flex;
+                gap: size.$gap;
+
+                padding: size.$gap;
+                margin: auto;
+
+                > .image
+                {
+                    $previewSize: 75px;
+
+                    flex-shrink: 0;
+                    @include util.size($previewSize);
+                    position: relative;
+
+                    border: 1px solid var(--c_border);
+                    border-radius: size.$borderRadius;
+                    
+                    &[data-current]
+                    {
+                        &::after { opacity: 1; }
+                    }
+
+                    &::after
+                    {
+                        position: absolute;
+                        content: "";
+                        width: $previewSize;
+                        height: 3px;
+                        background: var(--c_text-muted);
+                        bottom: calc(-1 * size.$gap);
+                        opacity: 0;
+
+                        @include util.transition(opacity);
+                    }
+
+                    > .hoverOverlay
+                    {
+                        position: absolute;
+                        z-index: 2;
+                        @include util.size(100%);
+                        background: rgba(0,0,0,.4);
+                        border-radius: size.$borderRadius;
+
+                        cursor: pointer;
+
+                        opacity: 0;
+                        @include util.transition(opacity);
+
+                        &:hover { opacity: 1; }
+
+                        > i
+                        {
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            color: white;
+                            font-size: 25px;
+                        }
+                    }
+
+                    > .imgWrapper
+                    {
+                        overflow: hidden;
+                        position: absolute;
+                        @include util.size(100%);
+                        border-radius: size.$borderRadius;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        > img
+                        {
+                            display: block;
+                            height: $previewSize;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+
+        > .display
+        {
+            > .displayImage
+            {
+                &:not([data-current])
+                {
+                    height: 0;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}

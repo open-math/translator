@@ -1,0 +1,23 @@
+{
+    "compilerOptions":
+    {
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+
+        "baseUrl": "./",
+        "paths": {
+            "core/*": ["core/*"],
+            "content/*": ["content/*"]
+        },
+
+        "target": "ESNext",
+        "module": "CommonJS",
+        "outDir": "dist/src",
+        "declaration": true
+    },
+
+    "ts-node":
+    {
+        "require": ["tsconfig-paths/register"]
+    }
+}

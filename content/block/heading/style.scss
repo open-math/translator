@@ -1,0 +1,42 @@
+@use 'def/size';
+@use 'include/util';
+
+[data-content]
+{
+    h1, h2, h3
+    {
+        text-align: left;
+    }
+    
+    h2, h3
+    {
+        font-weight: 600;
+    
+        &:hover > .hAnchor { opacity: 1; }
+    
+        > .hAnchor
+        {
+            margin-left: size.$gapSmall;
+            color: var(--c_text-dimmed);
+            font-size: 70%;
+            text-decoration: none;
+
+            opacity: 0;
+            @include util.transition(opacity, color);
+    
+            &:hover { color: var(--c_text-muted); }
+        }
+    }
+    
+    h2
+    {
+        font-size: 1.3em;
+        padding-bottom: size.$gapSmall;
+        border-bottom: 1px solid var(--c_border);
+    }
+    
+    h3
+    {
+        font-size: 1.1em;
+    }
+}

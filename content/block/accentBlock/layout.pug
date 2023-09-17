@@ -1,0 +1,24 @@
+mixin contentSection(title, content)
+    section
+        if (title)
+            .title!= title
+        .content(data-content="")!= content
+
+.accentBlock(id= id, class= classes, data-type= type)
+    .side
+        .type(title= i18n(`accentBlock.${type}.name`))
+            i
+
+        if (expand)
+            .expand(title= i18n(`accentBlock.${type}.expand`))
+                .bgOverlay
+                i.ic-chevron-up
+
+    .base
+        .main
+            +contentSection(title && showTitle ? title : false, main)
+
+        if (expand)
+            .expand
+                each content, title in expand
+                    +contentSection(title, content)

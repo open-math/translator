@@ -1,0 +1,26 @@
+.task(id= id, class= classes)
+    header
+        .info
+            .title!= title
+            if (tags)
+                .tags
+                    each tag in tags
+                        .tag!= tag
+        
+        - let sectionNames = Object.keys(sections);
+
+        if (sectionNames.length > 0)
+            .controls
+                each sectionName in sectionNames
+                    button(data-section= sectionName, title= i18n(`task.${sectionName}`))
+                        i
+
+    .statement!= statement
+
+    each content, name in sections
+        section(data-name= name)
+            .inner
+                header
+                    i
+                    span= i18n(`task.${name}`)
+                .content!= content

@@ -1,0 +1,26 @@
+@use 'def/bp';
+@use 'def/size';
+
+[data-content]
+{
+    --transitionSpeed: .2;
+
+    color: var(--c_text);
+    font-size: 18px;
+    line-height: 1.4;
+    text-align: justify;
+    padding: size.$gapBig;
+    hyphens: auto;
+
+    * { scroll-margin-top: 25px; }
+
+    > *:not(:last-child) { margin-bottom: size.$gapBig; }
+
+    @include bp.max(mini)
+    {
+        font-size: 99%;
+        text-align: left;
+        letter-spacing: .03em;
+        padding: size.$gap;
+    }
+}

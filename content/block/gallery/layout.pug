@@ -1,0 +1,13 @@
+.gallery(id= id, class= classes, data-start= start)
+    .selector
+        .inner
+            each image, i in images
+                .image
+                    .hoverOverlay
+                        i.ic-eye
+                    .imgWrapper
+                        img(src= image.src, loading="lazy", data-invertible= image.invertible ? '' : null)
+
+    .display
+        each image, i in renderedImages
+            .displayImage!= image

@@ -1,0 +1,14 @@
+@use 'def/size';
+
+[data-content]
+{
+    .array
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: size.$gapBig;
+
+        align-items: center;
+        justify-content: center;
+    }
+}

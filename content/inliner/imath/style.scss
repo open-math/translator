@@ -1,0 +1,20 @@
+[data-content]
+{
+    :not(.caption)
+    {
+        > .mathInline
+        {
+            color: var(--c_text-math);
+    
+            &.error
+            {
+                color: red;
+            }
+    
+            .katex
+            {
+                font-size: 1.15em !important;
+            }
+        }
+    }
+}

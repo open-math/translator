@@ -1,0 +1,71 @@
+@use 'sass:map';
+
+//
+// Defines a custom themed color for specific cases
+//
+
+@mixin define($name, $light, $dark: null)
+{
+    $property: '--c__#{$name}';
+
+    #{$property}: #{$light};
+
+    @if ($dark)
+    {
+        @include themeDark { #{$property}: #{$dark}; }        
+    }
+}
+
+//
+// Target specific theme
+//
+
+@mixin themeLight   { html:not([data-theme=dark]) & { @content; } }
+@mixin themeDark    { html[data-theme=dark] &, html[data-theme=auto-dark] & { @content; } }
+
+//
+// Palette helper functions
+//
+
+@function themeColor($light, $dark)
+{
+    @return (
+        light: $light,
+        dark: $dark
+    );
+}
+
+@function paletteColor($colorName, $theme)
+{
+    @return map.get(map.get($palette, $colorName), $theme);
+}
+
+//
+// Palette
+//
+
+$palette: (
+    bg:                 themeColor(#EBEBEB, #252525),
+    bg-content:         themeColor(#ffffff, #2d2d2d),
+    bg-content-shade:   themeColor(#f7f7f7, #292929),
+    bg-content-accent:  themeColor(#eaeaea, #242424),
+
+    text:               themeColor(#333333, #C8C8C8),
+    text-muted:         themeColor(#696969, #8c8c8c),
+    text-dimmed:        themeColor(#969696, #616161),
+    text-disabled:      themeColor(#b9b9b9, #414141),
+    text-math:          themeColor(#3e6084, #a7b3c7),
+
+    text-error:         themeColor(#9d5757, #d66e6e),
+
+    border:             themeColor(#D7D7D7, #404040),
+
+    //
+    // Accent Block Palette
+    //
+
+    ab-important:       themeColor(#B04A4A, #c95353),
+    ab-example:         #828282,
+    ab-definition:      #609955,
+    ab-theorem:         #4f81bc,
+);

@@ -1,0 +1,28 @@
+@use 'def/size';
+@use 'include/scroll';
+
+[data-content]
+{
+    .mathDisplay.error
+    {
+        background: rgba(255, 0, 0, 0.2);
+        border: 1px solid rgb(125, 0, 0);
+        padding: size.$gap;
+    }
+    
+    .katex-display
+    {
+        margin: 0;
+        .base { margin: calc(size.$gap/2.2) 0; }
+
+        overflow: hidden;
+        overflow-x: auto;
+
+        @extend %scrollbar;
+    }
+
+    .katex > .katex-html
+    {
+        white-space: normal;
+    }
+}

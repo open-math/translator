@@ -1,0 +1,41 @@
+@use 'def/color';
+@use 'def/size';
+@use 'include/util';
+
+[data-content]
+{
+    a.link
+    {
+        --textColor: #5883c0;
+        --underlineColor: #{rgba(#5883c0, .5)};
+        --highlightColor: #{rgba(#1a73e8, .1)};
+
+        @include color.themeDark
+        {
+            --textColor: #86abdf;
+            --underlineColor: #{rgba(#86abdf, .5)};;
+            --highlightColor: #{rgba(#1a73e8, .2)};
+        }
+
+        color: var(--textColor);
+        text-decoration: underline;
+        text-decoration-color: var(--underlineColor);
+
+        padding: 0 3px;
+        margin: 0 -3px;
+
+        background: transparent;
+        border-radius: size.$borderRadius;
+        @include util.transition(background);
+
+        &[data-preview]
+        {
+            text-decoration-style: dashed;
+        }
+
+        &:hover
+        {
+            background: var(--highlightColor);
+        }
+    }
+}

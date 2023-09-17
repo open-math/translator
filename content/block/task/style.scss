@@ -1,0 +1,165 @@
+@use 'def/size';
+@use 'def/bp';
+@use 'include/util';
+
+[data-content]
+{
+    .task
+    {
+        border: 1px solid var(--c_border);
+        border-left: none;
+        border-right: none;
+
+        padding-bottom: size.$gap;
+
+        > header
+        {
+            display: flex;
+            align-items: center;
+            gap: size.$gap;
+
+            border-bottom: 1px solid var(--c_border);
+            padding: size.$gap 0;
+
+            > .info
+            {
+                flex: 1;
+                display: flex;
+                gap: 5px;
+                flex-direction: column;
+                justify-content: center;
+
+                > .title
+                {
+                    font-weight: bold;
+                }
+
+                > .tags
+                {
+                    font-size: .85em;
+                    color: var(--c_text-muted);
+
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: size.$gapSmall;
+
+                    > .tag:not(:last-of-type)::after
+                    {
+                        content: ",";
+                    }
+
+                    @include bp.max(mini)
+                    {
+                        justify-content: center;
+                    }
+                }
+            }
+
+            > .controls
+            {
+                display: flex;
+                gap: size.$gap;
+
+                > button
+                {
+                    @include util.flexCC;
+                    @include util.size(40px);
+
+                    font-size: 17px;
+                    color: var(--c_text-muted);
+                    background: var(--c_bg);
+                    border: 2px solid transparent;
+                    border-radius: size.$borderRadius;
+                    cursor: pointer;
+
+                    @include util.transition(color, background, border-color);
+
+                    &:hover
+                    {
+                        color: var(--c_text);
+                        border-color: var(--c_text-disabled);
+                    }
+                }
+            }
+
+            @include bp.max(mini)
+            {
+                flex-direction: column;
+
+                > .info
+                {
+                    text-align: center;
+                }
+            }
+        }
+
+        > .statement
+        {
+            padding-top: size.$gap;
+        }
+
+        > section
+        {
+            overflow: hidden;
+        }
+
+        > section > .inner
+        {
+            > header
+            {
+                display: flex;
+                align-items: center;
+                gap: size.$gapSmall;
+
+                color: var(--c_text-muted);
+                font-weight: bold;
+
+                padding: size.$gap 0;
+
+                > i
+                {
+                    font-size: 18px;
+                    width: 18px;
+                    text-align: center;
+                }
+            }
+        }
+
+        > .statement,
+        > section > .inner > .content
+        {
+            > *:not(:last-child) { margin-bottom: size.$gapBig; }
+        }
+
+        $sections: (hint: '\e908', solution: '\e90a', answer: '\e909');
+
+        @each $sectionName, $sectionIcon in $sections
+        {
+            > header > .controls > button[data-section=#{$sectionName}] > i::before,
+            > section[data-name=#{$sectionName}] > .inner > header > i::before
+            {
+                font-family: "OMath-Content-Icons";
+                font-style: normal;
+                content: $sectionIcon;
+            }
+
+            &[data-#{$sectionName}-open]
+            {
+                > header > .controls > button[data-section=#{$sectionName}]
+                {
+                    border-color: var(--c_text-dimmed);
+                }
+            }
+
+            &:not([data-#{$sectionName}-open])
+            {
+                > section[data-name=#{$sectionName}]
+                {
+                    height: 0;
+                    position: relative;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}

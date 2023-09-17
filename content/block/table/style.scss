@@ -1,0 +1,36 @@
+@use 'def/size';
+@use 'include/scroll';
+
+[data-content]
+{
+    .tableWrapper
+    {
+        width: 100%;
+        overflow-x: auto;
+        @extend %scrollbar;
+    }
+
+    table
+    {
+        position: relative;
+        border-collapse: collapse;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table, th, td
+    {
+        border: 1px solid var(--c_border);
+    }
+
+    th, td
+    {
+        padding: size.$gapSmall;
+    }
+
+    th
+    {
+        font-weight: 600;
+        color: var(--c_text-muted);
+    }
+}

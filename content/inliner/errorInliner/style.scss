@@ -1,0 +1,19 @@
+@use 'def/size';
+@use 'def/color';
+
+[data-content]
+{
+    .errorInliner
+    {
+        --bgColor: rgb(215 92 90 / 50%);
+
+        @include color.themeLight   { --textColor: #7e0200; }
+        @include color.themeDark    { --textColor: #ffd3d2; }
+
+        font-size: 75%;
+        color: var(--textColor);
+        background: var(--bgColor);
+        padding: 3px 7px;
+        border-radius: size.$borderRadius;
+    }
+}

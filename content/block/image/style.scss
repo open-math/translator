@@ -1,0 +1,75 @@
+@use 'def/size';
+@use 'def/color';
+
+.pswp
+{
+    @include color.themeLight
+    {
+        --pswp-bg: white;
+        --pswp-icon-color: #4f4f4f;
+        --pswp-icon-color-secondary: white;
+
+        .pswp__dynamic-caption
+        {
+            color: #696969;
+        }
+    }
+
+    @include color.themeDark
+    {
+        img[data-invertible]
+        {
+            filter: hue-rotate(180deg) invert(100%);
+        }
+    }
+}
+
+[data-content]
+{
+    .image
+    {
+        display: flex;
+        flex-direction: column;
+        gap: size.$gap;
+
+        align-items: center;
+
+        img
+        {
+            display: block;
+            max-width: 100%;
+            height: auto;
+
+            &[data-invertible]
+            {
+                @include color.themeDark
+                {
+                    filter: hue-rotate(180deg) invert(100%);
+                }
+            }
+        }
+
+        > .caption
+        {
+            font-size: 90%;
+            color: var(--c_text-muted);
+        }
+    }
+
+    @at-root
+    {
+        .pswp__dynamic-caption--below,
+        .pswp__dynamic-caption--mobile
+        {
+            max-width: 100% !important;
+            padding: size.$gapBig !important;
+            font-family: "Open Sans", sans-serif;
+            text-align: center;
+        }
+
+        .pswp__dynamic-caption--mobile
+        {
+            padding: size.$gap !important;
+        }
+    }
+}
