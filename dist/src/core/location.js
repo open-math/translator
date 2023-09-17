@@ -17,6 +17,7 @@ function expandId(shortId) {
         switch (shortBlockType) {
             case 'h': return 'heading';
             case 's': return 'spoiler';
+            case 'i': return 'important';
             // Accent blocks
             case 'd': return 'definition';
             case 't': return 'theorem';
