@@ -1,4 +1,4 @@
-import { Parser as BitranParser, Block, ErrorBlock, ErrorInliner } from "bitran";
+import { Parser as BitranParser, Block, ErrorBlock, ErrorInliner, ErrorProduct } from "bitran";
 
 import ParseWorker from "core/parseWorker/ParseWorker";
 import UniquePW from "core/parseWorker/UniquePW";
@@ -34,6 +34,34 @@ export default class Parser
     location: Location;
     helper: Helper;
 
+    blockFactories = [
+        FHeading,
+        FHr,
+        FMath,
+        FImage,
+        FGallery,
+        FList,
+        FBlockList,
+        FArray,
+        FTable,
+        FTask,
+
+        FHtml,
+
+        FInclude,
+        FSpoiler,
+
+        FImportant,
+        FExample,
+        FDefinition,
+        FThreorem
+    ];
+
+    inlinerFactories = [
+        FLink,
+        FIMath,
+    ];
+
     constructor(location: Location, helper: Helper)
     {
         this.location = location;
@@ -58,75 +86,32 @@ export default class Parser
             bitranParser['location'] = this.location;
             bitranParser['helper'] = this.helper;
 
-            bitranParser.blockFactories = [
-                FHeading,
-                FHr,
-                FMath,
-                FImage,
-                FGallery,
-                FList,
-                FBlockList,
-                FArray,
-                FTable,
-                FTask,
+            bitranParser.blockFactories =   this.blockFactories;
+            bitranParser.inlinerFactories = this.inlinerFactories;
 
-                FHtml,
-
-                FInclude,
-                FSpoiler,
-
-                FImportant,
-                FExample,
-                FDefinition,
-                FThreorem
-            ];
-
-            bitranParser.inlinerFactories = [
-                FLink,
-                FIMath,
-            ];
-
-            bitranParser.onBlockParsed = (block, meta, factory) =>
+            let onParsed = (type: 'block' | 'inliner', product, factory, blockMeta = null) =>
             {
-                let newBlock = block;
+                let newProduct = product;
 
                 for (let i = 0; i < workers.length; i++)
                 {
                     let worker = workers[i];
-                    let workerResult = worker.blockStep(newBlock, meta, factory);
+                    let workerResult = type === 'block' ? worker.blockStep(newProduct, blockMeta, factory) : worker.inlinerStep(newProduct, factory);
 
                     if (workerResult)
                     {
-                        if (workerResult instanceof ErrorBlock)
+                        if (workerResult instanceof ErrorProduct)
                             return workerResult;
 
-                        newBlock = workerResult;
+                        newProduct = workerResult;
                     }
                 }
 
-                return newBlock;
+                return newProduct;
             }
 
-            bitranParser.onInlinerParsed = (inliner, factory) =>
-            {
-                let newInliner = inliner;
-
-                for (let i = 0; i < workers.length; i++)
-                {
-                    let worker = workers[i];
-                    let workerResult = worker.inlinerStep(newInliner, factory);
-                    
-                    if (workerResult)
-                    {
-                        if (workerResult instanceof ErrorInliner)
-                            return workerResult;
-
-                        newInliner = workerResult
-                    }
-                }
-
-                return newInliner;
-            }
+            bitranParser.onBlockParsed =    (block, meta, factory) => onParsed('block', block, factory, meta);
+            bitranParser.onInlinerParsed =  (inliner, factory) => onParsed('inliner', inliner, factory);
 
             bitranParser.onParseError = (errorProduct, factory) =>
             {

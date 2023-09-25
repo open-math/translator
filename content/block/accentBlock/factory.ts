@@ -119,6 +119,8 @@ export class VFAccentBlock extends BlockViewFactory<VAccentBlock, AccentBlock>
             }
         }
 
+        view.opened = Helper.getFrom(this.renderer).isEditor();
+
         return view;
     }
 

@@ -2,6 +2,7 @@ import { BlockFactory, BlockMeta } from "bitran";
 
 import Spoiler from "./block";
 import { StringViewFactory } from "core/viewFactory";
+import Helper from "core/Helper";
 
 export class FSpoiler extends BlockFactory<Spoiler>
 {
@@ -21,5 +22,17 @@ export class FSpoiler extends BlockFactory<Spoiler>
             spoiler.content = await this.parser.parseBlocks(strBlock);
 
         return spoiler;
+    }
+}
+
+export class VFSpoiler extends StringViewFactory<Spoiler>
+{
+    async setupView(product: Spoiler)
+    {
+        if (!Helper.getFrom(this.renderer).isEditor()) return '';
+
+        let content = await this.renderer.renderBlocks(product.content);
+
+        return `<div class="spoilerPreview"><div class="id">${product['id']}</div>${content}</div>`;
     }
 }

@@ -4,6 +4,8 @@ import { getInjectedProperty } from "./util";
 
 export default abstract class Helper
 {
+    abstract isEditor(): boolean;
+
     abstract getParserFileSrc(location: Location): Promise<string>;
     abstract getRenderFileSrc(location: Location): Promise<string>;
 

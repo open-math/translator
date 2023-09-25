@@ -1,0 +1,23 @@
+@use 'def/size';
+
+[data-content]
+{
+    .spoilerPreview
+    {
+        border-left: 3px solid var(--c_border);
+        padding-left: size.$gap;
+
+        > .id
+        {
+            color: var(--c_text-muted);
+
+            &::before
+            {
+                content: "Spoiler: ";
+                font-weight: bold;
+            }
+        }
+
+        > *:not(:last-child) { margin-bottom: size.$gap; }
+    }
+}

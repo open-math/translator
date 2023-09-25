@@ -8,7 +8,7 @@ var pug_match_html=/["&<>]/;
 function pug_rethrow(e,n,r,t){if(!(e instanceof Error))throw e;if(!("undefined"==typeof window&&n||t))throw e.message+=" on line "+r,e;var o,a,i,s;try{t=t||require("fs").readFileSync(n,{encoding:"utf8"}),o=3,a=t.split("\n"),i=Math.max(r-o,0),s=Math.min(a.length,r+o)}catch(t){return e.message+=" - could not read from "+n+" ("+t.message+")",void pug_rethrow(e,null,r)}o=a.slice(i,s).map(function(e,n){var t=n+i+1;return(t==r?"  > ":"    ")+t+"| "+e}).join("\n"),e.path=n;try{e.message=(n||"Pug")+":"+r+"\n"+o+"\n\n"+e.message}catch(e){}throw e}function accentBlock(locals) {var pug_html = "", pug_mixins = {}, pug_interp;var pug_debug_filename, pug_debug_line;try {;
     var locals_for_with = (locals || {});
     
-    (function (classes, expand, i18n, id, main, showTitle, title, type) {
+    (function (classes, expand, i18n, id, main, opened, showTitle, title, type) {
       ;pug_debug_line = 1;pug_debug_filename = "content\\block\\accentBlock\\layout.pug";
 pug_mixins["contentSection"] = pug_interp = function(title, content){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
@@ -27,7 +27,7 @@ pug_html = pug_html + "\u003Cdiv class=\"content\" data-content=\"\"\u003E";
 pug_html = pug_html + (null == (pug_interp = content) ? "" : pug_interp) + "\u003C\u002Fdiv\u003E\u003C\u002Fsection\u003E";
 };
 ;pug_debug_line = 7;pug_debug_filename = "content\\block\\accentBlock\\layout.pug";
-pug_html = pug_html + "\u003Cdiv" + (pug_attr("class", pug_classes(["accentBlock",classes], [false,true]), false, false)+pug_attr("id", id, true, false)+pug_attr("data-type", type, true, false)) + "\u003E";
+pug_html = pug_html + "\u003Cdiv" + (pug_attr("class", pug_classes(["accentBlock",classes], [false,true]), false, false)+pug_attr("id", id, true, false)+pug_attr("data-type", type, true, false)+pug_attr("data-expand-open", opened ? '' : null, true, false)) + "\u003E";
 ;pug_debug_line = 8;pug_debug_filename = "content\\block\\accentBlock\\layout.pug";
 pug_html = pug_html + "\u003Cdiv class=\"side\"\u003E";
 ;pug_debug_line = 9;pug_debug_filename = "content\\block\\accentBlock\\layout.pug";
@@ -89,7 +89,9 @@ pug_html = pug_html + "\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
         locals_for_with.id :
         typeof id !== 'undefined' ? id : undefined, "main" in locals_for_with ?
         locals_for_with.main :
-        typeof main !== 'undefined' ? main : undefined, "showTitle" in locals_for_with ?
+        typeof main !== 'undefined' ? main : undefined, "opened" in locals_for_with ?
+        locals_for_with.opened :
+        typeof opened !== 'undefined' ? opened : undefined, "showTitle" in locals_for_with ?
         locals_for_with.showTitle :
         typeof showTitle !== 'undefined' ? showTitle : undefined, "title" in locals_for_with ?
         locals_for_with.title :

@@ -28,6 +28,29 @@ const factory_15 = require("../content/inliner/link/factory");
 class Parser {
     location;
     helper;
+    blockFactories = [
+        factory_1.FHeading,
+        factory_2.FHr,
+        factory_3.FMath,
+        factory_4.FImage,
+        factory_6.FGallery,
+        factory_9.FList,
+        factory_9.FBlockList,
+        factory_11.FArray,
+        factory_12.FTable,
+        factory_13.FTask,
+        factory_10.FHtml,
+        factory_7.FInclude,
+        factory_8.FSpoiler,
+        factory_5.FImportant,
+        factory_5.FExample,
+        factory_5.FDefinition,
+        factory_5.FThreorem
+    ];
+    inlinerFactories = [
+        factory_15.FLink,
+        factory_14.FIMath,
+    ];
     constructor(location, helper) {
         this.location = location;
         this.helper = helper;
@@ -43,55 +66,23 @@ class Parser {
         let bitranParser = new bitran_1.Parser;
         bitranParser['location'] = this.location;
         bitranParser['helper'] = this.helper;
-        bitranParser.blockFactories = [
-            factory_1.FHeading,
-            factory_2.FHr,
-            factory_3.FMath,
-            factory_4.FImage,
-            factory_6.FGallery,
-            factory_9.FList,
-            factory_9.FBlockList,
-            factory_11.FArray,
-            factory_12.FTable,
-            factory_13.FTask,
-            factory_10.FHtml,
-            factory_7.FInclude,
-            factory_8.FSpoiler,
-            factory_5.FImportant,
-            factory_5.FExample,
-            factory_5.FDefinition,
-            factory_5.FThreorem
-        ];
-        bitranParser.inlinerFactories = [
-            factory_15.FLink,
-            factory_14.FIMath,
-        ];
-        bitranParser.onBlockParsed = (block, meta, factory) => {
-            let newBlock = block;
+        bitranParser.blockFactories = this.blockFactories;
+        bitranParser.inlinerFactories = this.inlinerFactories;
+        let onParsed = (type, product, factory, blockMeta = null) => {
+            let newProduct = product;
             for (let i = 0; i < workers.length; i++) {
                 let worker = workers[i];
-                let workerResult = worker.blockStep(newBlock, meta, factory);
+                let workerResult = type === 'block' ? worker.blockStep(newProduct, blockMeta, factory) : worker.inlinerStep(newProduct, factory);
                 if (workerResult) {
-                    if (workerResult instanceof bitran_1.ErrorBlock)
+                    if (workerResult instanceof bitran_1.ErrorProduct)
                         return workerResult;
-                    newBlock = workerResult;
+                    newProduct = workerResult;
                 }
             }
-            return newBlock;
+            return newProduct;
         };
-        bitranParser.onInlinerParsed = (inliner, factory) => {
-            let newInliner = inliner;
-            for (let i = 0; i < workers.length; i++) {
-                let worker = workers[i];
-                let workerResult = worker.inlinerStep(newInliner, factory);
-                if (workerResult) {
-                    if (workerResult instanceof bitran_1.ErrorInliner)
-                        return workerResult;
-                    newInliner = workerResult;
-                }
-            }
-            return newInliner;
-        };
+        bitranParser.onBlockParsed = (block, meta, factory) => onParsed('block', block, factory, meta);
+        bitranParser.onInlinerParsed = (inliner, factory) => onParsed('inliner', inliner, factory);
         bitranParser.onParseError = (errorProduct, factory) => {
             parseResult.errors.push(errorProduct.error);
             let swapResult = ErrorSwap_1.default.trySwap(errorProduct, factory);

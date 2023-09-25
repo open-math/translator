@@ -22,6 +22,7 @@ import { VFHtml } from "content/block/html/factory";
 import { VFArray } from "content/block/array/factory";
 import { VFTable } from "content/block/table/factory";
 import { VFTask } from "content/block/task/factory";
+import { VFSpoiler } from "content/block/spoiler/factory";
 
 // Inliner Factories
 import { VFText } from "content/inliner/text/factory";
@@ -56,6 +57,8 @@ export default class Renderer
         array:      VFArray,
         table:      VFTable,
         task:       VFTask,
+
+        spoiler:    VFSpoiler,
 
         html:       VFHtml,
 
@@ -149,6 +152,7 @@ export default class Renderer
                     result += await this.renderInliners([(swapResult ?? errorInliner)]);
                 }
             }
+            else result += inliner;
         }
 
         return result;
