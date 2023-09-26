@@ -26,9 +26,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Helper = exports.LocationType = exports.Location = exports.Renderer = exports.Parser = void 0;
-const parser_1 = __importDefault(require("./parser"));
+exports.Helper = exports.LocationType = exports.Location = exports.Renderer = exports.ParseError = exports.ParseResult = exports.Parser = void 0;
+const parser_1 = __importStar(require("./parser"));
 exports.Parser = parser_1.default;
+Object.defineProperty(exports, "ParseResult", { enumerable: true, get: function () { return parser_1.ParseResult; } });
+Object.defineProperty(exports, "ParseError", { enumerable: true, get: function () { return parser_1.ParseError; } });
 const Renderer_1 = __importDefault(require("./Renderer"));
 exports.Renderer = Renderer_1.default;
 const location_1 = __importStar(require("./location"));
