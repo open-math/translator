@@ -1,9 +1,9 @@
 {
     "name": "translator",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "exports": {
         ".": "./dist/src/core/index.js",
-        "./content": "./dist/src/content",
+        "./content": "./dist/src/content/index.js",
         "./node": "./dist/src/core/node/index.js"
     },
     "scripts": {
