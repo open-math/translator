@@ -6,5 +6,4 @@ export declare class VAccentBlock extends BlockView {
     expand: {
         [title: string]: string;
     };
-    opened: boolean;
 }

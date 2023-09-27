@@ -8,9 +8,9 @@ var pug_match_html=/["&<>]/;
 function pug_rethrow(e,n,r,t){if(!(e instanceof Error))throw e;if(!("undefined"==typeof window&&n||t))throw e.message+=" on line "+r,e;var o,a,i,s;try{t=t||require("fs").readFileSync(n,{encoding:"utf8"}),o=3,a=t.split("\n"),i=Math.max(r-o,0),s=Math.min(a.length,r+o)}catch(t){return e.message+=" - could not read from "+n+" ("+t.message+")",void pug_rethrow(e,null,r)}o=a.slice(i,s).map(function(e,n){var t=n+i+1;return(t==r?"  > ":"    ")+t+"| "+e}).join("\n"),e.path=n;try{e.message=(n||"Pug")+":"+r+"\n"+o+"\n\n"+e.message}catch(e){}throw e}function task(locals) {var pug_html = "", pug_mixins = {}, pug_interp;var pug_debug_filename, pug_debug_line;try {;
     var locals_for_with = (locals || {});
     
-    (function (Object, classes, i18n, id, sections, statement, tags, title) {
+    (function (Object, classes, i18n, id, isEditor, sections, statement, tags, title) {
       ;pug_debug_line = 1;pug_debug_filename = "content\\block\\task\\layout.pug";
-pug_html = pug_html + "\u003Cdiv" + (pug_attr("class", pug_classes(["task",classes], [false,true]), false, false)+pug_attr("id", id, true, false)) + "\u003E";
+pug_html = pug_html + "\u003Cdiv" + (pug_attr("class", pug_classes(["task",classes], [false,true]), false, false)+pug_attr("id", id, true, false)+pug_attr("data-hint-open", isEditor, true, false)+pug_attr("data-solution-open", isEditor, true, false)+pug_attr("data-answer-open", isEditor, true, false)) + "\u003E";
 ;pug_debug_line = 2;pug_debug_filename = "content\\block\\task\\layout.pug";
 pug_html = pug_html + "\u003Cheader\u003E";
 ;pug_debug_line = 3;pug_debug_filename = "content\\block\\task\\layout.pug";
@@ -147,7 +147,9 @@ pug_html = pug_html + "\u003C\u002Fdiv\u003E";
         locals_for_with.i18n :
         typeof i18n !== 'undefined' ? i18n : undefined, "id" in locals_for_with ?
         locals_for_with.id :
-        typeof id !== 'undefined' ? id : undefined, "sections" in locals_for_with ?
+        typeof id !== 'undefined' ? id : undefined, "isEditor" in locals_for_with ?
+        locals_for_with.isEditor :
+        typeof isEditor !== 'undefined' ? isEditor : undefined, "sections" in locals_for_with ?
         locals_for_with.sections :
         typeof sections !== 'undefined' ? sections : undefined, "statement" in locals_for_with ?
         locals_for_with.statement :

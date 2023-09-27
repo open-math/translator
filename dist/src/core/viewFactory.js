@@ -17,7 +17,7 @@ class ViewFactory {
     }
     renderTemplate(type, locals) {
         let helper = Helper_1.default.getFrom(this.renderer);
-        return (0, template_1.renderTemplate)(type, { ...{ i18n: helper.i18n }, ...locals });
+        return (0, template_1.renderTemplate)(type, { ...{ i18n: helper.i18n, isEditor: helper.isEditor() }, ...locals });
     }
 }
 exports.ViewFactory = ViewFactory;

@@ -85,7 +85,6 @@ class VFAccentBlock extends viewFactory_1.BlockViewFactory {
                 view.expand[key] = await this.renderer.renderBlocks(expand[key]);
             }
         }
-        view.opened = Helper_1.default.getFrom(this.renderer).isEditor();
         return view;
     }
     async getRender(view) {

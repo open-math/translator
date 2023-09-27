@@ -10,6 +10,5 @@ class VAccentBlock extends BlockView_1.default {
     showTitle;
     main;
     expand;
-    opened;
 }
 exports.VAccentBlock = VAccentBlock;

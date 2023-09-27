@@ -6,6 +6,4 @@ export class VAccentBlock extends BlockView
     showTitle:  boolean;
     main:       string;
     expand:     { [title: string]: string };
-
-    opened:     boolean;
 }

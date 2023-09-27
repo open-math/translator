@@ -4,7 +4,7 @@ mixin contentSection(title, content)
             .title!= title
         .content(data-content="")!= content
 
-.accentBlock(id= id, class= classes, data-type= type, data-expand-open= opened ? '' : null)
+.accentBlock(id= id, class= classes, data-type= type, data-expand-open= isEditor)
     .side
         .type(title= i18n(`accentBlock.${type}.name`))
             i

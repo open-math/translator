@@ -27,7 +27,7 @@ export abstract class ViewFactory<TProductView, TProduct extends Product>
     renderTemplate(type: string, locals: object)
     {
         let helper = Helper.getFrom(this.renderer);
-        return renderTemplate(type, {...{ i18n: helper.i18n }, ...locals});
+        return renderTemplate(type, {...{ i18n: helper.i18n, isEditor: helper.isEditor() }, ...locals});
     }
 }
 
