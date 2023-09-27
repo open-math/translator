@@ -1,4 +1,5 @@
 import { ObjBlockFactory } from "bitran";
+import { v4 as uuidv4 } from 'uuid';
 
 import Image from "./block";
 import Location, { LocationType } from "core/location";
@@ -22,14 +23,23 @@ export class FImage extends ObjBlockFactory<Image>
         image.width = size.width;
         image.height = size.height;
 
-        image.maxWidth = obj.maxWidth;
-
         image.invertible = obj.invertible;
+
+        this.setRenderWidth(image, obj);
         
         if (obj.caption)
             image.caption = await this.parser.parseInliners(obj.caption);
 
         return image;
+    }
+
+    setRenderWidth(image: Image, obj: any)
+    {
+        if (!obj.width)
+            return null;
+
+        image.widthId = uuidv4();
+        image.renderWidth = obj.width;
     }
 
     locationFromSrc(rawSrc: string)
@@ -75,8 +85,13 @@ export class VFImage extends BlockViewFactory<VImage, Image>
             view.src = await this.renderer.helper.getRenderFileSrc(block.src);
             view.width = block.width;
             view.height = block.height;
-            view.maxWidth = block.maxWidth;
             view.invertible = block.invertible;
+            
+            if (block.widthId)
+            {
+                view.widthId = block.widthId;
+                view.widthCss = this.getWidthCss(block.widthId, block.renderWidth);
+            }
 
         if (block.caption)
             view.caption = await this.renderer.renderInliners(block.caption);
@@ -87,5 +102,38 @@ export class VFImage extends BlockViewFactory<VImage, Image>
     async getRender(view: VImage)
     {
         return this.renderBlockView(view);
+    }
+
+    getWidthCss(widthId, renderWidth)
+    {
+        let css = '';
+
+        let maxWidthCss = (maxWidth) =>
+        {
+            return `img[data-width-id="${widthId}"] { max-width: ${maxWidth} !important }`;
+        }
+
+        if (typeof renderWidth === 'string')
+            css = maxWidthCss(renderWidth);
+        else
+        {
+            Object.keys(renderWidth).forEach(bp =>
+            {
+                switch (bp)
+                {
+                    case 'full':
+                        css += `@media (min-width: 500px) { ${maxWidthCss(renderWidth[bp])} }`;
+                        break;
+                    case 'mini':
+                        css += `@media (max-width: 500px) { ${maxWidthCss(renderWidth[bp])} }`;
+                        break;
+                    default:
+                        css += `@media (max-width: ${bp}) { ${maxWidthCss(renderWidth[bp])} }`;
+                        break;
+                }
+            });
+        }
+
+        return '<style>' + css + '</style>';
     }
 }

@@ -134,8 +134,8 @@ export default class Renderer
 
                 try
                 {
-                    if (inliner instanceof Text)
-                        inliner.content = RenderExtra.afterStyle(inliner.content, quoteTracker);
+                    if (inliner.type === 'text')
+                        (<Text>inliner).content = RenderExtra.afterStyle((<Text>inliner).content, quoteTracker);
 
                     result += await viewFactory.render(inliner);
                 }

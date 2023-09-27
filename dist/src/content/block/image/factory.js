@@ -28,6 +28,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VFImage = exports.FImage = void 0;
 const bitran_1 = require("bitran");
+const uuid_1 = require("uuid");
 const block_1 = __importDefault(require("./block"));
 const location_1 = __importStar(require("../../../core/location"));
 const parser_1 = require("../../../core/parser");
@@ -42,11 +43,17 @@ class FImage extends bitran_1.ObjBlockFactory {
         let size = await helper.getImageSize(await helper.getParserFileSrc(image.src));
         image.width = size.width;
         image.height = size.height;
-        image.maxWidth = obj.maxWidth;
         image.invertible = obj.invertible;
+        this.setRenderWidth(image, obj);
         if (obj.caption)
             image.caption = await this.parser.parseInliners(obj.caption);
         return image;
+    }
+    setRenderWidth(image, obj) {
+        if (!obj.width)
+            return null;
+        image.widthId = (0, uuid_1.v4)();
+        image.renderWidth = obj.width;
     }
     locationFromSrc(rawSrc) {
         if (!rawSrc)
@@ -81,14 +88,41 @@ class VFImage extends viewFactory_1.BlockViewFactory {
         view.src = await this.renderer.helper.getRenderFileSrc(block.src);
         view.width = block.width;
         view.height = block.height;
-        view.maxWidth = block.maxWidth;
         view.invertible = block.invertible;
+        if (block.widthId) {
+            view.widthId = block.widthId;
+            view.widthCss = this.getWidthCss(block.widthId, block.renderWidth);
+        }
         if (block.caption)
             view.caption = await this.renderer.renderInliners(block.caption);
         return view;
     }
     async getRender(view) {
         return this.renderBlockView(view);
+    }
+    getWidthCss(widthId, renderWidth) {
+        let css = '';
+        let maxWidthCss = (maxWidth) => {
+            return `img[data-width-id="${widthId}"] { max-width: ${maxWidth} !important }`;
+        };
+        if (typeof renderWidth === 'string')
+            css = maxWidthCss(renderWidth);
+        else {
+            Object.keys(renderWidth).forEach(bp => {
+                switch (bp) {
+                    case 'full':
+                        css += `@media (min-width: 500px) { ${maxWidthCss(renderWidth[bp])} }`;
+                        break;
+                    case 'mini':
+                        css += `@media (max-width: 500px) { ${maxWidthCss(renderWidth[bp])} }`;
+                        break;
+                    default:
+                        css += `@media (max-width: ${bp}) { ${maxWidthCss(renderWidth[bp])} }`;
+                        break;
+                }
+            });
+        }
+        return '<style>' + css + '</style>';
     }
 }
 exports.VFImage = VFImage;

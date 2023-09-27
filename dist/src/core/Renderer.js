@@ -97,7 +97,7 @@ class Renderer {
             if (inliner.type in this.inlinerFactories) {
                 let viewFactory = new this.inlinerFactories[inliner.type](this);
                 try {
-                    if (inliner instanceof bitran_1.Text)
+                    if (inliner.type === 'text')
                         inliner.content = RenderExtra.afterStyle(inliner.content, quoteTracker);
                     result += await viewFactory.render(inliner);
                 }

@@ -6,8 +6,9 @@ class Image extends bitran_1.Block {
     src;
     width;
     height;
-    maxWidth;
     caption;
     invertible;
+    widthId;
+    renderWidth;
 }
 exports.default = Image;

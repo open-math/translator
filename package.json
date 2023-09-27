@@ -1,6 +1,6 @@
 {
     "name": "translator",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "exports": {
         ".": "./dist/src/core/index.js",
         "./content": "./dist/src/content/index.js",
@@ -29,6 +29,7 @@
     "dependencies": {
         "bitran": "^0.0.10",
         "katex": "^0.16.8",
-        "slugify": "^1.6.6"
+        "slugify": "^1.6.6",
+        "uuid": "^9.0.1"
     }
 }

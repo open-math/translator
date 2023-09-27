@@ -5,22 +5,26 @@ function pug_classes_object(r){var a="",n="";for(var o in r)o&&r[o]&&pug_has_own
 function pug_escape(e){var a=""+e,t=pug_match_html.exec(a);if(!t)return e;var r,c,n,s="";for(r=t.index,c=0;r<a.length;r++){switch(a.charCodeAt(r)){case 34:n="&quot;";break;case 38:n="&amp;";break;case 60:n="&lt;";break;case 62:n="&gt;";break;default:continue}c!==r&&(s+=a.substring(c,r)),c=r+1,s+=n}return c!==r?s+a.substring(c,r):s}
 var pug_has_own_property=Object.prototype.hasOwnProperty;
 var pug_match_html=/["&<>]/;
-function pug_rethrow(e,n,r,t){if(!(e instanceof Error))throw e;if(!("undefined"==typeof window&&n||t))throw e.message+=" on line "+r,e;var o,a,i,s;try{t=t||require("fs").readFileSync(n,{encoding:"utf8"}),o=3,a=t.split("\n"),i=Math.max(r-o,0),s=Math.min(a.length,r+o)}catch(t){return e.message+=" - could not read from "+n+" ("+t.message+")",void pug_rethrow(e,null,r)}o=a.slice(i,s).map(function(e,n){var t=n+i+1;return(t==r?"  > ":"    ")+t+"| "+e}).join("\n"),e.path=n;try{e.message=(n||"Pug")+":"+r+"\n"+o+"\n\n"+e.message}catch(e){}throw e}
-function pug_style(r){if(!r)return"";if("object"==typeof r){var t="";for(var e in r)pug_has_own_property.call(r,e)&&(t=t+e+":"+r[e]+";");return t}return r+""}function image(locals) {var pug_html = "", pug_mixins = {}, pug_interp;var pug_debug_filename, pug_debug_line;try {;
+function pug_rethrow(e,n,r,t){if(!(e instanceof Error))throw e;if(!("undefined"==typeof window&&n||t))throw e.message+=" on line "+r,e;var o,a,i,s;try{t=t||require("fs").readFileSync(n,{encoding:"utf8"}),o=3,a=t.split("\n"),i=Math.max(r-o,0),s=Math.min(a.length,r+o)}catch(t){return e.message+=" - could not read from "+n+" ("+t.message+")",void pug_rethrow(e,null,r)}o=a.slice(i,s).map(function(e,n){var t=n+i+1;return(t==r?"  > ":"    ")+t+"| "+e}).join("\n"),e.path=n;try{e.message=(n||"Pug")+":"+r+"\n"+o+"\n\n"+e.message}catch(e){}throw e}function image(locals) {var pug_html = "", pug_mixins = {}, pug_interp;var pug_debug_filename, pug_debug_line;try {;
     var locals_for_with = (locals || {});
     
-    (function (caption, classes, height, id, invertible, maxWidth, src, width) {
+    (function (caption, classes, height, id, invertible, src, width, widthCss, widthId) {
       ;pug_debug_line = 1;pug_debug_filename = "content\\block\\image\\layout.pug";
-pug_html = pug_html + "\u003Cdiv" + (pug_attr("class", pug_classes(["image",classes], [false,true]), false, false)+pug_attr("id", id, true, false)) + "\u003E";
+if ((widthCss)) {
 ;pug_debug_line = 2;pug_debug_filename = "content\\block\\image\\layout.pug";
-pug_html = pug_html + "\u003Ca" + (pug_attr("href", src, true, false)+pug_attr("data-pswp-width", width, true, false)+pug_attr("data-pswp-height", height, true, false)+" data-pswp-single=\"\" target=\"_blank\"") + "\u003E";
-;pug_debug_line = 3;pug_debug_filename = "content\\block\\image\\layout.pug";
-pug_html = pug_html + "\u003Cimg" + (pug_attr("src", src, true, false)+" loading=\"lazy\""+pug_attr("data-invertible", invertible ? '' : null, true, false)+pug_attr("style", pug_style(maxWidth ? `width: 100%; max-width: ${maxWidth}px` : null), true, false)) + "\u002F\u003E\u003C\u002Fa\u003E";
+pug_html = pug_html + (null == (pug_interp = widthCss) ? "" : pug_interp);
+}
+;pug_debug_line = 4;pug_debug_filename = "content\\block\\image\\layout.pug";
+pug_html = pug_html + "\u003Cdiv" + (pug_attr("class", pug_classes(["image",classes], [false,true]), false, false)+pug_attr("id", id, true, false)) + "\u003E";
 ;pug_debug_line = 5;pug_debug_filename = "content\\block\\image\\layout.pug";
+pug_html = pug_html + "\u003Ca" + (pug_attr("href", src, true, false)+pug_attr("data-pswp-width", width, true, false)+pug_attr("data-pswp-height", height, true, false)+" data-pswp-single=\"\" target=\"_blank\"") + "\u003E";
+;pug_debug_line = 6;pug_debug_filename = "content\\block\\image\\layout.pug";
+pug_html = pug_html + "\u003Cimg" + (pug_attr("src", src, true, false)+" loading=\"lazy\""+pug_attr("data-invertible", invertible ? '' : null, true, false)+pug_attr("data-width-id", widthId, true, false)) + "\u002F\u003E\u003C\u002Fa\u003E";
+;pug_debug_line = 8;pug_debug_filename = "content\\block\\image\\layout.pug";
 if ((caption)) {
-;pug_debug_line = 6;pug_debug_filename = "content\\block\\image\\layout.pug";
+;pug_debug_line = 9;pug_debug_filename = "content\\block\\image\\layout.pug";
 pug_html = pug_html + "\u003Cdiv class=\"caption\"\u003E";
-;pug_debug_line = 6;pug_debug_filename = "content\\block\\image\\layout.pug";
+;pug_debug_line = 9;pug_debug_filename = "content\\block\\image\\layout.pug";
 pug_html = pug_html + (null == (pug_interp = caption) ? "" : pug_interp) + "\u003C\u002Fdiv\u003E";
 }
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";
@@ -34,11 +38,13 @@ pug_html = pug_html + "\u003C\u002Fdiv\u003E";
         locals_for_with.id :
         typeof id !== 'undefined' ? id : undefined, "invertible" in locals_for_with ?
         locals_for_with.invertible :
-        typeof invertible !== 'undefined' ? invertible : undefined, "maxWidth" in locals_for_with ?
-        locals_for_with.maxWidth :
-        typeof maxWidth !== 'undefined' ? maxWidth : undefined, "src" in locals_for_with ?
+        typeof invertible !== 'undefined' ? invertible : undefined, "src" in locals_for_with ?
         locals_for_with.src :
         typeof src !== 'undefined' ? src : undefined, "width" in locals_for_with ?
         locals_for_with.width :
-        typeof width !== 'undefined' ? width : undefined));
+        typeof width !== 'undefined' ? width : undefined, "widthCss" in locals_for_with ?
+        locals_for_with.widthCss :
+        typeof widthCss !== 'undefined' ? widthCss : undefined, "widthId" in locals_for_with ?
+        locals_for_with.widthId :
+        typeof widthId !== 'undefined' ? widthId : undefined));
     ;} catch (err) {pug_rethrow(err, pug_debug_filename, pug_debug_line);};return pug_html;} module.exports = image;

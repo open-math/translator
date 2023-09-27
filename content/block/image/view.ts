@@ -5,7 +5,9 @@ export class VImage extends BlockView
     src: string;
     width: number;
     height: number;
-    maxWidth: number;
     caption: string;
     invertible: boolean;
+
+    widthId: string;
+    widthCss: string;
 }

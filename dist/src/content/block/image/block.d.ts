@@ -5,7 +5,10 @@ export default class Image extends Block {
     src: Location;
     width: number;
     height: number;
-    maxWidth: number;
     caption: Inliner[];
     invertible: boolean;
+    widthId: string;
+    renderWidth: string | {
+        [bp: string]: string;
+    };
 }

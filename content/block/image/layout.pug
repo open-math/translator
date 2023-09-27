@@ -1,6 +1,9 @@
+if (widthCss)
+    != widthCss
+
 .image(id= id, class= classes)
     a(href= src, data-pswp-width= width, data-pswp-height= height, data-pswp-single="", target="_blank")
-        img(src= src, loading="lazy", data-invertible= invertible ? '' : null, style= maxWidth ? `width: 100%; max-width: ${maxWidth}px` : null)
+        img(src= src, loading="lazy", data-invertible= invertible ? '' : null, data-width-id= widthId)
 
     if (caption)
         .caption!= caption

@@ -9,8 +9,9 @@ class VImage extends BlockView_1.default {
     src;
     width;
     height;
-    maxWidth;
     caption;
     invertible;
+    widthId;
+    widthCss;
 }
 exports.VImage = VImage;
