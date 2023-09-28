@@ -34,6 +34,12 @@ export class VFLink extends InlinerViewFactory<VLink, Link>
             return link;
         }
 
+        if (targetLocation.target === '')
+        {
+            link.target = `/${targetLocation.path}/@${targetLocation.type}/`;
+            return link;
+        }
+
         link.target = this.locationToHref(targetLocation);
         link.preview = product.target;
 

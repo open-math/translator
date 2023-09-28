@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getType = exports.expandId = exports.LocationType = void 0;
+exports.getType = exports.expandId = exports.isIdLike = exports.LocationType = void 0;
 const util_1 = require("./util");
 var LocationType;
 (function (LocationType) {
@@ -11,8 +11,14 @@ var LocationType;
     LocationType["Contributor"] = "contributor";
     LocationType["Direct"] = "direct";
 })(LocationType || (exports.LocationType = LocationType = {}));
+function isIdLike(idLike) {
+    return idLike.split(':').length === 2;
+}
+exports.isIdLike = isIdLike;
 function expandId(shortId) {
     let parts = shortId.split(':');
+    if (parts.length === 1)
+        return shortId;
     let blockType = ((shortBlockType) => {
         switch (shortBlockType) {
             case 'h': return 'heading';
@@ -46,7 +52,10 @@ class Location {
         let location = new Location;
         location.type = getType(parts[0]);
         location.path = parts[1];
-        location.target = location.type === LocationType.Direct ? '' : expandId(parts[2]);
+        if (location.type === LocationType.Direct || parts.length < 3)
+            location.target = '';
+        else
+            location.target = expandId(parts[2]);
         return location;
     }
     //
@@ -79,8 +88,14 @@ class Location {
         if (parts.length === 2) {
             let location = new Location;
             location.type = getType(parts[0]);
-            location.path = context.path;
-            location.target = expandId(parts[1]);
+            if (isIdLike(parts[1])) {
+                location.path = context.path;
+                location.target = expandId(parts[1]);
+            }
+            else {
+                location.path = parts[1];
+                location.target = '';
+            }
             return location;
         }
         // Full link

@@ -25,9 +25,11 @@ export default class Parser {
     parse(text: string): Promise<ParseResult>;
 }
 export declare class ParseResult {
+    locaiton: Location;
     blocks: Block[];
     uniques: Unique[];
     refs: string[];
+    files: string[];
     errors: ParseError[];
 }
 export declare function getLocation(bitranParser: BitranParser): Location;

@@ -6,6 +6,7 @@ export declare enum LocationType {
     Contributor = "contributor",
     Direct = "direct"
 }
+export declare function isIdLike(idLike: string): boolean;
 export declare function expandId(shortId: string): string;
 export declare function getType(rawType: string): LocationType;
 export default class Location {

@@ -51,6 +51,10 @@ class VFLink extends viewFactory_1.InlinerViewFactory {
             link.target = targetLocation.path;
             return link;
         }
+        if (targetLocation.target === '') {
+            link.target = `/${targetLocation.path}/@${targetLocation.type}/`;
+            return link;
+        }
         link.target = this.locationToHref(targetLocation);
         link.preview = product.target;
         return link;

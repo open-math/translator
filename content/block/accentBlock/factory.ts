@@ -21,8 +21,11 @@ export abstract class FAccentBlock<TObj extends object = any> extends ObjBlockFa
         if (obj.title)
             block.title = obj.title;
         
-        block.showTitle = obj.showTitle;
-        block.showInToc = obj.showInToc;
+        if ('showTitle' in obj)
+            block.showTitle = obj.showTitle;
+
+        if ('showInToc' in obj)
+            block.showInToc = obj.showInToc;
 
         return block;
     }

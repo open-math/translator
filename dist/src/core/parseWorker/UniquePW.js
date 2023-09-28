@@ -17,8 +17,9 @@ class UniquePW extends ParseWorker_1.default {
     autoIdMap = {};
     blockStep(block, meta) {
         if (meta?.id) {
+            let location = __1.Location.normalize(block.type + ':' + meta.id, this.parser.location);
             let unique = new unique_1.Unique;
-            unique.id = __1.Location.normalize(block.type + ':' + meta.id, this.parser.location).toString();
+            unique.id = location.toString();
             unique.content = block instanceof block_1.default ? null : [block];
             if (block instanceof block_2.default)
                 unique.content = block.content;
@@ -26,7 +27,7 @@ class UniquePW extends ParseWorker_1.default {
             if (unique.id in this.uniqueMap)
                 this.duplicateIds[unique.id] = null;
             this.uniqueMap[unique.id] = unique;
-            block.id = unique.id;
+            block.id = location.target;
         }
         else {
             if (block instanceof block_1.default || block instanceof block_3.default)

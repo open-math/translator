@@ -12,9 +12,17 @@ export enum LocationType
     Direct = 'direct',
 }
 
+export function isIdLike(idLike: string)
+{
+    return idLike.split(':').length === 2;
+}
+
 export function expandId(shortId: string)
 {
     let parts = shortId.split(':');
+
+    if (parts.length === 1)
+        return shortId;
 
     let blockType = ((shortBlockType) =>
     {
@@ -62,7 +70,11 @@ export default class Location
         let location = new Location;
             location.type = getType(parts[0]);
             location.path = parts[1];
-            location.target = location.type === LocationType.Direct ? '' : expandId(parts[2]);
+
+        if (location.type === LocationType.Direct || parts.length < 3)
+            location.target = '';
+        else
+            location.target = expandId(parts[2]);
 
         return location;
     }
@@ -110,8 +122,17 @@ export default class Location
         {
             let location = new Location;
                 location.type = getType(parts[0]);
+
+            if (isIdLike(parts[1]))
+            {
                 location.path = context.path;
                 location.target = expandId(parts[1]);
+            }
+            else
+            {
+                location.path = parts[1];
+                location.target = '';
+            }
 
             return location;
         }

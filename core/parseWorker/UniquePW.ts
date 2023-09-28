@@ -22,8 +22,10 @@ export default class UniquePW extends ParseWorker
     {
         if (meta?.id)
         {
+            let location = Location.normalize(block.type + ':' + meta.id, this.parser.location);
+
             let unique = new Unique;
-                unique.id = Location.normalize(block.type + ':' + meta.id, this.parser.location).toString();
+                unique.id = location.toString();
                 unique.content = block instanceof Heading ? null : [block];
 
             if (block instanceof Spoiler)
@@ -36,7 +38,7 @@ export default class UniquePW extends ParseWorker
 
             this.uniqueMap[unique.id] = unique;
 
-            (<IHasAttributes>block).id = unique.id;
+            (<IHasAttributes>block).id = location.target;
         }
         else
         {

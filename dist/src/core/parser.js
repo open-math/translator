@@ -7,6 +7,7 @@ exports.ParseError = exports.getHelper = exports.getLocation = exports.ParseResu
 const bitran_1 = require("bitran");
 const UniquePW_1 = __importDefault(require("./parseWorker/UniquePW"));
 const RefPW_1 = __importDefault(require("./parseWorker/RefPW"));
+const FilePW_1 = __importDefault(require("./parseWorker/FilePW"));
 const ErrorSwap_1 = __importDefault(require("./ErrorSwap"));
 // Block Factories
 const factory_1 = require("../content/block/heading/factory");
@@ -48,8 +49,8 @@ class Parser {
         factory_5.FThreorem
     ];
     inlinerFactories = [
-        factory_15.FLink,
         factory_14.FIMath,
+        factory_15.FLink,
     ];
     constructor(location, helper) {
         this.location = location;
@@ -60,6 +61,7 @@ class Parser {
         let aliasMap = {};
         let workers = [
             new UniquePW_1.default,
+            new FilePW_1.default,
             new RefPW_1.default(aliasMap)
         ];
         workers.forEach(worker => worker.parser = this);
@@ -96,6 +98,7 @@ class Parser {
         });
         //
         let parseResult = new ParseResult;
+        parseResult.locaiton = this.location;
         parseResult.blocks = await bitranParser.parseBlocks(text);
         workers.forEach(worker => worker.finally(parseResult));
         return parseResult;
@@ -103,9 +106,11 @@ class Parser {
 }
 exports.default = Parser;
 class ParseResult {
+    locaiton;
     blocks = [];
     uniques = [];
     refs = [];
+    files = [];
     errors = [];
 }
 exports.ParseResult = ParseResult;

@@ -20,7 +20,7 @@
 // Target specific theme
 //
 
-@mixin themeLight   { html:not([data-theme=dark]) & { @content; } }
+@mixin themeLight   { html:not([data-theme=dark], [data-theme=auto-dark]) & { @content; } }
 @mixin themeDark    { html[data-theme=dark] &, html[data-theme=auto-dark] & { @content; } }
 
 //

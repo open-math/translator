@@ -2,7 +2,8 @@ import { Parser as BitranParser, Block, ErrorBlock, ErrorInliner, ErrorProduct }
 
 import ParseWorker from "core/parseWorker/ParseWorker";
 import UniquePW from "core/parseWorker/UniquePW";
-import RefPW from "./parseWorker/RefPW";
+import RefPW from "core/parseWorker/RefPW";
+import FilePW from "core/parseWorker/FilePW";
 
 import { Unique } from "core/block/unique";
 import ErrorSwap from "./ErrorSwap";
@@ -58,8 +59,8 @@ export default class Parser
     ];
 
     inlinerFactories = [
-        FLink,
         FIMath,
+        FLink,
     ];
 
     constructor(location: Location, helper: Helper)
@@ -76,6 +77,7 @@ export default class Parser
 
         let workers: ParseWorker[] = [
             new UniquePW,
+            new FilePW,
             new RefPW(aliasMap)
         ];
 
@@ -131,6 +133,7 @@ export default class Parser
         //
 
         let parseResult = new ParseResult;
+            parseResult.locaiton = this.location;
             parseResult.blocks = await bitranParser.parseBlocks(text);
 
         workers.forEach(worker => worker.finally(parseResult));
@@ -141,9 +144,11 @@ export default class Parser
 
 export class ParseResult
 {
+    locaiton:   Location;
     blocks:     Block[] = [];
     uniques:    Unique[] = [];
     refs:       string[] = [];
+    files:      string[] = [];
     errors:     ParseError[] = [];
 }
 

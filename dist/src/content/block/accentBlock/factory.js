@@ -20,8 +20,10 @@ class FAccentBlock extends bitran_1.ObjBlockFactory {
         block.expand = await this.getExpand(obj);
         if (obj.title)
             block.title = obj.title;
-        block.showTitle = obj.showTitle;
-        block.showInToc = obj.showInToc;
+        if ('showTitle' in obj)
+            block.showTitle = obj.showTitle;
+        if ('showInToc' in obj)
+            block.showInToc = obj.showInToc;
         return block;
     }
     //

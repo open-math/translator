@@ -65,7 +65,7 @@ export class FImage extends ObjBlockFactory<Image>
             
             // Image is located somewhere else
             case 3:
-                imgLocation.type =      srcParts[0] as LocationType;
+                imgLocation.type =      srcParts[0].slice(1) as LocationType;
                 imgLocation.path =      srcParts[1];
                 imgLocation.target =    srcParts[2];
                 break;
@@ -110,7 +110,8 @@ export class VFImage extends BlockViewFactory<VImage, Image>
 
         let maxWidthCss = (maxWidth) =>
         {
-            return `img[data-width-id="${widthId}"] { max-width: ${maxWidth} !important }`;
+            //return `img[data-width-id="${widthId}"] { max-width: min(${maxWidth}, 100%) !important }`;
+            return `img[data-width-id="${widthId}"] { width: ${maxWidth}; }`;
         }
 
         if (typeof renderWidth === 'string')

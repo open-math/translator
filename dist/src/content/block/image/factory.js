@@ -72,7 +72,7 @@ class FImage extends bitran_1.ObjBlockFactory {
                 throw new Error(`Invalid image 'src' property: '${rawSrc}'`);
             // Image is located somewhere else
             case 3:
-                imgLocation.type = srcParts[0];
+                imgLocation.type = srcParts[0].slice(1);
                 imgLocation.path = srcParts[1];
                 imgLocation.target = srcParts[2];
                 break;
@@ -103,7 +103,8 @@ class VFImage extends viewFactory_1.BlockViewFactory {
     getWidthCss(widthId, renderWidth) {
         let css = '';
         let maxWidthCss = (maxWidth) => {
-            return `img[data-width-id="${widthId}"] { max-width: ${maxWidth} !important }`;
+            //return `img[data-width-id="${widthId}"] { max-width: min(${maxWidth}, 100%) !important }`;
+            return `img[data-width-id="${widthId}"] { width: ${maxWidth}; }`;
         };
         if (typeof renderWidth === 'string')
             css = maxWidthCss(renderWidth);
