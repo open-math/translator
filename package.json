@@ -1,6 +1,6 @@
 {
     "name": "translator",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "exports": {
         ".": "./dist/src/core/index.js",
         "./content": "./dist/src/content/index.js",

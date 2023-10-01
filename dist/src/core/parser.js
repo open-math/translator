@@ -56,6 +56,9 @@ class Parser {
         this.location = location;
         this.helper = helper;
     }
+    filterParseWorkers(parseWorkers) {
+        return parseWorkers;
+    }
     //
     async parse(text) {
         let aliasMap = {};
@@ -64,6 +67,7 @@ class Parser {
             new FilePW_1.default,
             new RefPW_1.default(aliasMap)
         ];
+        workers = this.filterParseWorkers(workers);
         workers.forEach(worker => worker.parser = this);
         let bitranParser = new bitran_1.Parser;
         bitranParser['location'] = this.location;

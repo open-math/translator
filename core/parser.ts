@@ -69,6 +69,11 @@ export default class Parser
         this.helper = helper;
     }
 
+    filterParseWorkers(parseWorkers: ParseWorker[])
+    {
+        return parseWorkers;
+    }
+
     //
 
     async parse(text: string): Promise<ParseResult>
@@ -80,6 +85,8 @@ export default class Parser
             new FilePW,
             new RefPW(aliasMap)
         ];
+
+        workers = this.filterParseWorkers(workers);
 
         workers.forEach(worker => worker.parser = this);
 

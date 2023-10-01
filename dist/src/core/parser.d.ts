@@ -1,4 +1,5 @@
 import { Parser as BitranParser, Block } from "bitran";
+import ParseWorker from "./parseWorker/ParseWorker";
 import { Unique } from "./block/unique";
 import Location from "./location";
 import Helper from "./Helper";
@@ -22,6 +23,7 @@ export default class Parser {
     blockFactories: (typeof FHeading | typeof FHr | typeof FMath | typeof FGallery | typeof FImage | typeof FInclude | typeof FSpoiler | typeof FList | typeof FHtml | typeof FArray | typeof FTask | typeof FImportant)[];
     inlinerFactories: (typeof FIMath | typeof FLink)[];
     constructor(location: Location, helper: Helper);
+    filterParseWorkers(parseWorkers: ParseWorker[]): ParseWorker[];
     parse(text: string): Promise<ParseResult>;
 }
 export declare class ParseResult {
