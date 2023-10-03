@@ -23,11 +23,12 @@ const factory_13 = require("../content/block/array/factory");
 const factory_14 = require("../content/block/table/factory");
 const factory_15 = require("../content/block/task/factory");
 const factory_16 = require("../content/block/spoiler/factory");
+const factory_17 = require("../content/block/todo/factory");
 // Inliner Factories
-const factory_17 = require("../content/inliner/text/factory");
-const factory_18 = require("../content/inliner/imath/factory");
-const factory_19 = require("../content/inliner/errorInliner/factory");
-const factory_20 = require("../content/inliner/link/factory");
+const factory_18 = require("../content/inliner/text/factory");
+const factory_19 = require("../content/inliner/imath/factory");
+const factory_20 = require("../content/inliner/errorInliner/factory");
+const factory_21 = require("../content/inliner/link/factory");
 class Renderer {
     location;
     helper;
@@ -56,12 +57,13 @@ class Renderer {
         example: factory_8.VFAccentBlock,
         definition: factory_8.VFAccentBlock,
         theorem: factory_8.VFAccentBlock,
+        todo: factory_17.VFTodo,
     };
     inlinerFactories = {
-        text: factory_17.VFText,
-        errorInliner: factory_19.VFErrorInliner,
-        imath: factory_18.VFIMath,
-        link: factory_20.VFLink,
+        text: factory_18.VFText,
+        errorInliner: factory_20.VFErrorInliner,
+        imath: factory_19.VFIMath,
+        link: factory_21.VFLink,
     };
     async renderBlocks(blocks) {
         let result = '';

@@ -23,6 +23,7 @@ import { VFArray } from "content/block/array/factory";
 import { VFTable } from "content/block/table/factory";
 import { VFTask } from "content/block/task/factory";
 import { VFSpoiler } from "content/block/spoiler/factory";
+import { VFTodo } from "content/block/todo/factory";
 
 // Inliner Factories
 import { VFText } from "content/inliner/text/factory";
@@ -68,6 +69,8 @@ export default class Renderer
         example:    VFAccentBlock,
         definition: VFAccentBlock,
         theorem:    VFAccentBlock,
+
+        todo:       VFTodo,
     };
 
     inlinerFactories: { [type: string]: { new (renderer: Renderer): ViewFactory<any, Inliner> } } =

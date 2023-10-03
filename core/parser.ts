@@ -7,6 +7,7 @@ import FilePW from "core/parseWorker/FilePW";
 
 import { Unique } from "core/block/unique";
 import ErrorSwap from "./ErrorSwap";
+import { Todo } from "content/index";
 
 import Location from "./location";
 import Helper from "./Helper";
@@ -25,10 +26,12 @@ import { FHtml } from "content/block/html/factory";
 import { FArray } from "content/block/array/factory";
 import { FTable } from "content/block/table/factory";
 import { FTask } from "content/block/task/factory";
+import { FTodo } from "content/block/todo/factory";
 
 // Inline Factories
 import { FIMath } from "content/inliner/imath/factory";
 import { FLink } from "content/inliner/link/factory";
+import TodoPW from "./parseWorker/TodoPW";
 
 export default class Parser
 {
@@ -55,7 +58,9 @@ export default class Parser
         FImportant,
         FExample,
         FDefinition,
-        FThreorem
+        FThreorem,
+
+        FTodo,
     ];
 
     inlinerFactories = [
@@ -82,6 +87,7 @@ export default class Parser
 
         let workers: ParseWorker[] = [
             new UniquePW,
+            new TodoPW,
             new FilePW,
             new RefPW(aliasMap)
         ];
@@ -154,6 +160,7 @@ export class ParseResult
     locaiton:   Location;
     blocks:     Block[] = [];
     uniques:    Unique[] = [];
+    todos:      Todo[] = [];
     refs:       string[] = [];
     files:      string[] = [];
     errors:     ParseError[] = [];

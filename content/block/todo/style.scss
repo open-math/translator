@@ -1,0 +1,46 @@
+@use 'def/size';
+@use 'def/color';
+
+[data-content]
+{
+    .todo
+    {
+        --_text: #967132;
+        --_bg: #f8eeb9;
+        --_border: #dec878;
+    
+        @include color.themeDark
+        {
+            --_text: #f7deb2;
+            --_bg: #5b4c00;
+            --_border: #7e6819;
+        }
+
+        padding: size.$gap;
+        color: var(--_text);
+        background: var(--_bg);
+
+        > .title
+        {
+            display: flex;
+            gap: size.$gap;
+            align-items: center;
+
+            font-weight: bold;
+            font-size: .98em;
+
+            padding-bottom: size.$gap;
+            border-bottom: 1px solid var(--_border);
+            margin-bottom: size.$gap;
+
+            > i { font-size: 20px; }
+        }
+
+        > .content
+        {
+            > *:not(:last-child) { margin-bottom: size.$gap; }
+        }
+    }
+}
+
+html:not(.displayTodo) { [data-content] { .todo { display: none; } } }

@@ -12,6 +12,7 @@ import Math from "./block/math/block";
 import Spoiler from "./block/spoiler/block";
 import Table from "./block/table/block";
 import Task from "./block/task/block";
+import Todo from "./block/todo/block";
 import IMath from "./inliner/imath/inliner";
 import Link from "./inliner/link/inliner";
-export { AccentBlock, Array, ErrorImage, Gallery, Heading, Hr, Html, Image, Include, List, Math, Spoiler, Table, Task, IMath, Link, };
+export { AccentBlock, Array, ErrorImage, Gallery, Heading, Hr, Html, Image, Include, List, Math, Spoiler, Table, Task, Todo, IMath, Link, };

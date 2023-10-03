@@ -23,9 +23,11 @@ const factory_10 = require("../content/block/html/factory");
 const factory_11 = require("../content/block/array/factory");
 const factory_12 = require("../content/block/table/factory");
 const factory_13 = require("../content/block/task/factory");
+const factory_14 = require("../content/block/todo/factory");
 // Inline Factories
-const factory_14 = require("../content/inliner/imath/factory");
-const factory_15 = require("../content/inliner/link/factory");
+const factory_15 = require("../content/inliner/imath/factory");
+const factory_16 = require("../content/inliner/link/factory");
+const TodoPW_1 = __importDefault(require("./parseWorker/TodoPW"));
 class Parser {
     location;
     helper;
@@ -46,11 +48,12 @@ class Parser {
         factory_5.FImportant,
         factory_5.FExample,
         factory_5.FDefinition,
-        factory_5.FThreorem
+        factory_5.FThreorem,
+        factory_14.FTodo,
     ];
     inlinerFactories = [
-        factory_14.FIMath,
-        factory_15.FLink,
+        factory_15.FIMath,
+        factory_16.FLink,
     ];
     constructor(location, helper) {
         this.location = location;
@@ -64,6 +67,7 @@ class Parser {
         let aliasMap = {};
         let workers = [
             new UniquePW_1.default,
+            new TodoPW_1.default,
             new FilePW_1.default,
             new RefPW_1.default(aliasMap)
         ];
@@ -113,6 +117,7 @@ class ParseResult {
     locaiton;
     blocks = [];
     uniques = [];
+    todos = [];
     refs = [];
     files = [];
     errors = [];

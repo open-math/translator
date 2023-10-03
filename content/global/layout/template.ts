@@ -15,6 +15,7 @@ let templates =
     array:          require('./array'),
     table:          require('./table'),
     task:           require('./task'),
+    todo:           require('./todo'),
 }
 
 export function renderTemplate(name: string, locals: object = {})

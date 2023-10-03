@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Link = exports.IMath = exports.Task = exports.Table = exports.Spoiler = exports.Math = exports.List = exports.Include = exports.Image = exports.Html = exports.Hr = exports.Heading = exports.Gallery = exports.ErrorImage = exports.Array = exports.AccentBlock = void 0;
+exports.Link = exports.IMath = exports.Todo = exports.Task = exports.Table = exports.Spoiler = exports.Math = exports.List = exports.Include = exports.Image = exports.Html = exports.Hr = exports.Heading = exports.Gallery = exports.ErrorImage = exports.Array = exports.AccentBlock = void 0;
 const block_1 = __importDefault(require("./block/accentBlock/block"));
 exports.AccentBlock = block_1.default;
 const block_2 = __importDefault(require("./block/array/block"));
@@ -32,6 +32,8 @@ const block_13 = __importDefault(require("./block/table/block"));
 exports.Table = block_13.default;
 const block_14 = __importDefault(require("./block/task/block"));
 exports.Task = block_14.default;
+const block_15 = __importDefault(require("./block/todo/block"));
+exports.Todo = block_15.default;
 const inliner_1 = __importDefault(require("./inliner/imath/inliner"));
 exports.IMath = inliner_1.default;
 const inliner_2 = __importDefault(require("./inliner/link/inliner"));
