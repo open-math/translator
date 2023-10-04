@@ -37,10 +37,15 @@ const view_1 = require("./view");
 class FImage extends bitran_1.ObjBlockFactory {
     objType = 'image';
     async parseObj(obj) {
-        let image = new block_1.default;
-        image.src = this.locationFromSrc(obj.src);
         let helper = (0, parser_1.getHelper)(this.parser);
-        let size = await helper.getImageSize(await helper.getParserFileSrc(image.src));
+        if (!obj.src)
+            throw new Error(`Missing 'src' property in image!`);
+        let imgLocation = this.locationFromSrc(obj.src);
+        if (!(await helper.hasImage(imgLocation)))
+            throw new Error(`Missing image '${imgLocation}'!`);
+        let size = await helper.getImageSize(imgLocation);
+        let image = new block_1.default;
+        image.src = imgLocation;
         image.width = size.width;
         image.height = size.height;
         image.invertible = obj.invertible;
@@ -85,7 +90,7 @@ exports.FImage = FImage;
 class VFImage extends viewFactory_1.BlockViewFactory {
     async setupBlockView(block) {
         let view = new view_1.VImage;
-        view.src = await this.renderer.helper.getRenderFileSrc(block.src);
+        view.src = await this.renderer.helper.getImageSrc(block.src);
         view.width = block.width;
         view.height = block.height;
         view.invertible = block.invertible;

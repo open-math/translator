@@ -6,10 +6,9 @@ export default abstract class Helper
 {
     abstract isEditor(): boolean;
 
-    abstract getParserFileSrc(location: Location): Promise<string>;
-    abstract getRenderFileSrc(location: Location): Promise<string>;
-
-    abstract getImageSize(src: string): Promise<{ width: number, height: number }>;
+    abstract hasImage(location: Location): Promise<boolean>;
+    abstract getImageSrc(location: Location): Promise<string>;
+    abstract getImageSize(location: Location): Promise<{ width: number, height: number }>;
 
     abstract getUnique(id: string): Promise<Block[]>;
 

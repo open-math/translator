@@ -100,10 +100,11 @@ class Parser {
                 return swapResult;
         };
         // Scan for RefAlias
-        text = text.replaceAll(/^\^ (\S+) (\S+)$/gm, (match, alias, ref) => {
-            aliasMap[alias] = ref;
-            return '';
-        });
+        if (text)
+            text = text.replaceAll(/^\^ (\S+) (\S+)$/gm, (match, alias, ref) => {
+                aliasMap[alias] = ref;
+                return '';
+            });
         //
         let parseResult = new ParseResult;
         parseResult.locaiton = this.location;

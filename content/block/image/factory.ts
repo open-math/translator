@@ -13,15 +13,22 @@ export class FImage extends ObjBlockFactory<Image>
 
     async parseObj(obj: any): Promise<Image>
     {
-        let image = new Image;
-            image.src = this.locationFromSrc(obj.src);
-
         let helper = getHelper(this.parser);
 
-        let size = await helper.getImageSize(await helper.getParserFileSrc(image.src));
+        if (!obj.src)
+            throw new Error(`Missing 'src' property in image!`);
 
-        image.width = size.width;
-        image.height = size.height;
+        let imgLocation = this.locationFromSrc(obj.src);
+
+        if (!(await helper.hasImage(imgLocation)))
+            throw new Error(`Missing image '${imgLocation}'!`);
+
+        let size = await helper.getImageSize(imgLocation);
+
+        let image = new Image;
+            image.src = imgLocation;
+            image.width = size.width;
+            image.height = size.height;
 
         image.invertible = obj.invertible;
 
@@ -82,7 +89,7 @@ export class VFImage extends BlockViewFactory<VImage, Image>
     async setupBlockView(block: Image)
     {
         let view = new VImage;
-            view.src = await this.renderer.helper.getRenderFileSrc(block.src);
+            view.src = await this.renderer.helper.getImageSrc(block.src);
             view.width = block.width;
             view.height = block.height;
             view.invertible = block.invertible;
