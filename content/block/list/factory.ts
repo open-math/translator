@@ -17,7 +17,7 @@ export class FList extends BlockFactory<List>
 
     isOl(str: string)
     {
-        let match = str.match(/^(\d+). /);
+        let match = str.match(/^(\d+)\. /);
 
         if (match)
             return match[1];

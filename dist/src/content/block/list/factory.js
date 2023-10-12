@@ -16,7 +16,7 @@ class FList extends bitran_1.BlockFactory {
         return str.startsWith('* ');
     }
     isOl(str) {
-        let match = str.match(/^(\d+). /);
+        let match = str.match(/^(\d+)\. /);
         if (match)
             return match[1];
         return null;

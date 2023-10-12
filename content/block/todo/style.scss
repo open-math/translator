@@ -29,11 +29,14 @@
             font-weight: bold;
             font-size: .98em;
 
-            padding-bottom: size.$gap;
-            border-bottom: 1px solid var(--_border);
-            margin-bottom: size.$gap;
-
             > i { font-size: 20px; }
+        }
+
+        > .title + .content
+        {
+            border-top: 1px solid var(--_border);
+            margin-top: size.$gap;
+            padding-top: size.$gap;
         }
 
         > .content

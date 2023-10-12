@@ -11,13 +11,12 @@ const view_1 = require("./view");
 class FTodo extends bitran_1.ObjBlockFactory {
     objType = 'todo';
     async parseObj(obj) {
-        ['title', 'content'].forEach(property => {
-            if (!obj[property])
-                throw new Error(`Missing '${property}' property in todo block!`);
-        });
+        if (!obj['title'])
+            throw new Error(`Missing 'title' property in todo block!`);
         let todo = new block_1.default;
         todo.title = obj.title;
-        todo.content = await this.parser.parseBlocks(obj.content);
+        if (obj.content)
+            todo.content = await this.parser.parseBlocks(obj.content);
         return todo;
     }
 }
@@ -26,7 +25,8 @@ class VFTodo extends viewFactory_1.BlockViewFactory {
     async setupBlockView(block) {
         let view = new view_1.VTodo;
         view.title = block.title;
-        view.content = await this.renderer.renderBlocks(block.content);
+        if (block.content)
+            view.content = await this.renderer.renderBlocks(block.content);
         return view;
     }
     async getRender(view) {

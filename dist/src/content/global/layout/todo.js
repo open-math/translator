@@ -16,9 +16,13 @@ pug_html = pug_html + "\u003Cspan\u003E";
 ;pug_debug_line = 4;pug_debug_filename = "content\\block\\todo\\layout.pug";
 pug_html = pug_html + (pug_escape(null == (pug_interp = title) ? "" : pug_interp)) + "\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 5;pug_debug_filename = "content\\block\\todo\\layout.pug";
+if ((content)) {
+;pug_debug_line = 6;pug_debug_filename = "content\\block\\todo\\layout.pug";
 pug_html = pug_html + "\u003Cdiv class=\"content\"\u003E";
-;pug_debug_line = 5;pug_debug_filename = "content\\block\\todo\\layout.pug";
-pug_html = pug_html + (null == (pug_interp = content) ? "" : pug_interp) + "\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+;pug_debug_line = 6;pug_debug_filename = "content\\block\\todo\\layout.pug";
+pug_html = pug_html + (null == (pug_interp = content) ? "" : pug_interp) + "\u003C\u002Fdiv\u003E";
+}
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
     }.call(this, "content" in locals_for_with ?
         locals_for_with.content :
         typeof content !== 'undefined' ? content : undefined, "id" in locals_for_with ?

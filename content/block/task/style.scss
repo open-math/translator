@@ -129,6 +129,10 @@
         > section > .inner > .content
         {
             > *:not(:last-child) { margin-bottom: size.$gapBig; }
+            > h3
+            {
+                color: var(--c_text-muted);
+            }
         }
 
         $sections: (hint: '\e908', solution: '\e90a', answer: '\e909');

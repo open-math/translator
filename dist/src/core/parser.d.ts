@@ -1,7 +1,6 @@
 import { Parser as BitranParser, Block } from "bitran";
 import ParseWorker from "./parseWorker/ParseWorker";
 import { Unique } from "./block/unique";
-import { Todo } from "../content/index";
 import Location from "./location";
 import Helper from "./Helper";
 import { FHeading } from "../content/block/heading/factory";
@@ -31,7 +30,10 @@ export declare class ParseResult {
     locaiton: Location;
     blocks: Block[];
     uniques: Unique[];
-    todos: Todo[];
+    todos: {
+        id: string;
+        title: string;
+    }[];
     refs: string[];
     files: string[];
     errors: ParseError[];

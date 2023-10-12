@@ -1,4 +1,4 @@
-import { ObjBlockFactory } from "bitran";
+import { BlockFactory, BlockMeta, ObjBlockFactory } from "bitran";
 
 import Todo from "./block";
 import { BlockViewFactory } from "core/viewFactory";
@@ -10,14 +10,13 @@ export class FTodo extends ObjBlockFactory<Todo>
 
     async parseObj(obj: any): Promise<Todo>
     {
-        ['title', 'content'].forEach(property =>
-        {
-            if (!obj[property])
-                throw new Error(`Missing '${property}' property in todo block!`);
-        });
+        if (!obj['title'])
+            throw new Error(`Missing 'title' property in todo block!`);
 
         let todo = new Todo;
             todo.title = obj.title;
+
+        if (obj.content)
             todo.content = await this.parser.parseBlocks(obj.content);
 
         return todo;
@@ -30,7 +29,9 @@ export class VFTodo extends BlockViewFactory<VTodo, Todo>
     {
         let view = new VTodo;
             view.title = block.title;
-            view.content = await this.renderer.renderBlocks(block.content);
+
+            if (block.content)
+                view.content = await this.renderer.renderBlocks(block.content);
 
         return view;
     }

@@ -11,9 +11,9 @@ class TodoPW extends ParseWorker_1.default {
     blockStep(block) {
         if (!(block instanceof index_1.Todo))
             return;
-        let id = (0, uuid_1.v4)();
-        block.id = 'todo:' + id;
-        this.todoBlocks.push(block);
+        let id = 'todo:' + (0, uuid_1.v4)();
+        block.id = id;
+        this.todoBlocks.push({ id: id, title: block.title });
     }
     finally(parseResult) {
         parseResult.todos = this.todoBlocks;

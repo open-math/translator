@@ -8,6 +8,7 @@ const bitran_1 = require("bitran");
 const UniquePW_1 = __importDefault(require("./parseWorker/UniquePW"));
 const RefPW_1 = __importDefault(require("./parseWorker/RefPW"));
 const FilePW_1 = __importDefault(require("./parseWorker/FilePW"));
+const TodoPW_1 = __importDefault(require("./parseWorker/TodoPW"));
 const ErrorSwap_1 = __importDefault(require("./ErrorSwap"));
 // Block Factories
 const factory_1 = require("../content/block/heading/factory");
@@ -27,7 +28,6 @@ const factory_14 = require("../content/block/todo/factory");
 // Inline Factories
 const factory_15 = require("../content/inliner/imath/factory");
 const factory_16 = require("../content/inliner/link/factory");
-const TodoPW_1 = __importDefault(require("./parseWorker/TodoPW"));
 class Parser {
     location;
     helper;

@@ -2,4 +2,5 @@
     .title
         i.ic-important-triangle
         span= title
-    .content!= content
+    if (content)
+        .content!= content

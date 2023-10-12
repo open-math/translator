@@ -8,18 +8,18 @@ import { ParseResult } from "..";
 
 export default class TodoPW extends ParseWorker
 {
-    todoBlocks: Todo[] = [];
+    todoBlocks: { id: string, title: string }[] = [];
 
     blockStep(block: Block)
     {
         if (!(block instanceof Todo))
             return;
 
-        let id = uuid4();
+        let id = 'todo:' + uuid4();
 
-        (<IHasAttributes>block).id = 'todo:' + id;
+        (<IHasAttributes>block).id = id;
 
-        this.todoBlocks.push(block);
+        this.todoBlocks.push({ id: id, title: block.title });
     }
 
     finally(parseResult: ParseResult)

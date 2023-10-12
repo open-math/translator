@@ -4,6 +4,7 @@ import ParseWorker from "core/parseWorker/ParseWorker";
 import UniquePW from "core/parseWorker/UniquePW";
 import RefPW from "core/parseWorker/RefPW";
 import FilePW from "core/parseWorker/FilePW";
+import TodoPW from "./parseWorker/TodoPW";
 
 import { Unique } from "core/block/unique";
 import ErrorSwap from "./ErrorSwap";
@@ -31,7 +32,6 @@ import { FTodo } from "content/block/todo/factory";
 // Inline Factories
 import { FIMath } from "content/inliner/imath/factory";
 import { FLink } from "content/inliner/link/factory";
-import TodoPW from "./parseWorker/TodoPW";
 
 export default class Parser
 {
@@ -161,7 +161,7 @@ export class ParseResult
     locaiton:   Location;
     blocks:     Block[] = [];
     uniques:    Unique[] = [];
-    todos:      Todo[] = [];
+    todos:      { id: string, title: string }[] = [];
     refs:       string[] = [];
     files:      string[] = [];
     errors:     ParseError[] = [];
