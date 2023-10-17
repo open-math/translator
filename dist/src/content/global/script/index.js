@@ -17,6 +17,9 @@ let products = [
     script_5.init,
 ];
 function initProducts(contentElem, gOptions = {}) {
+    if (!contentElem)
+        return;
     products.forEach(product => product(contentElem, gOptions));
 }
 exports.initProducts = initProducts;
+globalThis.GenTaskManager = new script_5.GenTaskManager;

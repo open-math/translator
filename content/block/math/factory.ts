@@ -1,6 +1,7 @@
 import katex from "katex";
-
 import { BlockFactory } from "bitran";
+
+import macros from "./macros";
 
 import Math from "./block";
 import { BlockViewFactory } from "core/viewFactory";
@@ -38,7 +39,7 @@ export class VFMath extends BlockViewFactory<VMath, Math>
 
         try
         {
-            math.html = katex.renderToString(block.content, { displayMode: true, strict: false, macros: require('./macros')});
+            math.html = katex.renderToString(block.content, { displayMode: true, strict: false, macros: macros});
         }
         catch (e)
         {

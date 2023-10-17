@@ -16,5 +16,14 @@ function buildScripts() {
         sourcemap: build_1.IS_DEV,
         globalName: 'OMathContent'
     });
+    // Task Generator Worker
+    esbuild_1.default.buildSync({
+        entryPoints: ['content/block/task/worker.ts'],
+        outfile: 'dist/content/worker_taskGen.js',
+        charset: 'utf8',
+        bundle: true,
+        minify: !build_1.IS_DEV,
+        sourcemap: build_1.IS_DEV
+    });
 }
 exports.buildScripts = buildScripts;

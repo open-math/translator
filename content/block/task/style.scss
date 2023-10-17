@@ -4,7 +4,22 @@
 
 [data-content]
 {
-    .task
+    .taskHolder > .similarTasks > .inner
+    {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: size.$gapStruct;
+        padding-top: size.$gapStruct;
+    }
+
+    .taskHolder .task:not([data-similar-open]) + .similarTasks
+    {
+        height: 0;
+        overflow: hidden;
+    }
+
+    .taskHolder .task
     {
         border: 1px solid var(--c_border);
         border-left: none;
@@ -21,17 +36,29 @@
             border-bottom: 1px solid var(--c_border);
             padding: size.$gap 0;
 
+            > .analogIcon
+            {
+                font-size: 30px;
+                color: var(--c_text-muted);
+            }
+
             > .info
             {
                 flex: 1;
                 display: flex;
-                gap: 5px;
                 flex-direction: column;
                 justify-content: center;
 
                 > .title
                 {
+                    text-align: left;
                     font-weight: bold;
+                }
+
+                > .desc
+                {
+                    font-size: .85em;
+                    color: var(--c_text-muted);
                 }
 
                 > .tags
@@ -126,6 +153,12 @@
         }
 
         > .statement,
+        > section
+        {
+            @include util.transition(filter);
+        }
+
+        > .statement,
         > section > .inner > .content
         {
             > *:not(:last-child) { margin-bottom: size.$gapBig; }
@@ -135,7 +168,7 @@
             }
         }
 
-        $sections: (hint: '\e908', solution: '\e90a', answer: '\e909');
+        $sections: (hint: '\e908', solution: '\e90a', answer: '\e909', similar: '\e90c');
 
         @each $sectionName, $sectionIcon in $sections
         {
@@ -164,6 +197,27 @@
                     overflow: hidden;
                 }
             }
+        }
+    }
+
+    .taskHolder .task.genTask[data-generating]
+    {
+        > .statement,
+        > section
+        {
+            filter: blur(10px);
+        }
+
+        > header button.generate
+        {
+            border-color: var(--c_text-dimmed);
+            > i { animation: genAnim 1s linear infinite; }
+        }
+
+        @keyframes genAnim
+        {
+            from    { transform: rotate(0deg); }
+            to      { transform: rotate(360deg); }
         }
     }
 }

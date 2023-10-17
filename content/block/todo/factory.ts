@@ -1,4 +1,4 @@
-import { BlockFactory, BlockMeta, ObjBlockFactory } from "bitran";
+import { ObjBlockFactory } from "bitran";
 
 import Todo from "./block";
 import { BlockViewFactory } from "core/viewFactory";

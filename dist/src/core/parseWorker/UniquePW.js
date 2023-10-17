@@ -10,7 +10,7 @@ const parser_1 = require("../parser");
 const block_1 = __importDefault(require("../../content/block/heading/block"));
 const __1 = require("..");
 const block_2 = __importDefault(require("../../content/block/spoiler/block"));
-const block_3 = __importDefault(require("../../content/block/task/block"));
+const block_3 = require("../../content/block/task/block");
 class UniquePW extends ParseWorker_1.default {
     uniqueMap = {};
     duplicateIds = {};
@@ -30,7 +30,7 @@ class UniquePW extends ParseWorker_1.default {
             block.id = location.target;
         }
         else {
-            if (block instanceof block_1.default || block instanceof block_3.default)
+            if (block instanceof block_1.default || block instanceof block_3.Task)
                 this.setAutoId(block, block.title);
         }
         block.classes ??= meta?.classes;

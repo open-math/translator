@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.VFMath = exports.FMath = void 0;
 const katex_1 = __importDefault(require("katex"));
 const bitran_1 = require("bitran");
+const macros_1 = __importDefault(require("./macros"));
 const block_1 = __importDefault(require("./block"));
 const viewFactory_1 = require("../../../core/viewFactory");
 const view_1 = require("./view");
@@ -29,7 +30,7 @@ class VFMath extends viewFactory_1.BlockViewFactory {
     async setupBlockView(block) {
         let math = new view_1.VMath;
         try {
-            math.html = katex_1.default.renderToString(block.content, { displayMode: true, strict: false, macros: require('./macros') });
+            math.html = katex_1.default.renderToString(block.content, { displayMode: true, strict: false, macros: macros_1.default });
         }
         catch (e) {
             e.texString = block.content;

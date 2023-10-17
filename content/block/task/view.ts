@@ -1,14 +1,25 @@
 import BlockView from "core/block/BlockView";
 
-export class VTask extends BlockView
+export class VTaskBase extends BlockView
 {
     title:      string;
-    tags?:      string[];
-
     statement:  string;
-    hint:       string;
-    solution:   string;
-    answer:     string;
-
     sections:   { [name: string]: string } = {};
+}
+
+export class VTask extends VTaskBase
+{
+    tags?:      string[];
+    similar:    VSimilarTask[];
+}
+
+export class VSimilarTask extends VTaskBase
+{
+    num: number;
+}
+
+export class VSimilarGenTask extends VTaskBase
+{
+    scriptId:   string;
+    script:     string;
 }

@@ -1,5 +1,4 @@
-const MACRO =
-{
+export default {
     // Множество
     "\\set":    "\\left\\{#1\\right\\}",
 
@@ -7,5 +6,3 @@ const MACRO =
     "\\andcases": "\\begin{cases}#1\\end{cases}",
     "\\orcases": "\\left[\\begin{array}{ll} #1 \\end{array}\\right."
 }
-
-module.exports = MACRO;

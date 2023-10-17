@@ -10,7 +10,7 @@ import { ParseError, ParseResult } from "core/parser";
 import Heading from "content/block/heading/block";
 import { Location } from "..";
 import Spoiler from "content/block/spoiler/block";
-import Task from "content/block/task/block";
+import { Task } from "content/block/task/block";
 
 export default class UniquePW extends ParseWorker
 {
