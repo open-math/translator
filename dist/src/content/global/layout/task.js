@@ -8,7 +8,7 @@ var pug_match_html=/["&<>]/;
 function pug_rethrow(e,n,r,t){if(!(e instanceof Error))throw e;if(!("undefined"==typeof window&&n||t))throw e.message+=" on line "+r,e;var o,a,i,s;try{t=t||require("fs").readFileSync(n,{encoding:"utf8"}),o=3,a=t.split("\n"),i=Math.max(r-o,0),s=Math.min(a.length,r+o)}catch(t){return e.message+=" - could not read from "+n+" ("+t.message+")",void pug_rethrow(e,null,r)}o=a.slice(i,s).map(function(e,n){var t=n+i+1;return(t==r?"  > ":"    ")+t+"| "+e}).join("\n"),e.path=n;try{e.message=(n||"Pug")+":"+r+"\n"+o+"\n\n"+e.message}catch(e){}throw e}function task(locals) {var pug_html = "", pug_mixins = {}, pug_interp;var pug_debug_filename, pug_debug_line;try {;
     var locals_for_with = (locals || {});
     
-    (function (Object, i18n, isEditor, similar, tags) {
+    (function (Object, i18n, isEditor, similar) {
       ;pug_debug_line = 1;pug_debug_filename = "content\\block\\task\\layout.pug";
 pug_mixins["task"] = pug_interp = function(task, isSimilar){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
@@ -35,7 +35,7 @@ pug_html = pug_html + "\u003Cdiv class=\"desc\"\u003E";
 pug_html = pug_html + (pug_escape(null == (pug_interp = i18n('task.similarNum') + ' ' + task.num) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
 }
 ;pug_debug_line = 23;pug_debug_filename = "content\\block\\task\\layout.pug";
-if ((tags)) {
+if ((task.tags)) {
 ;pug_debug_line = 24;pug_debug_filename = "content\\block\\task\\layout.pug";
 pug_html = pug_html + "\u003Cdiv class=\"tags\"\u003E";
 ;pug_debug_line = 25;pug_debug_filename = "content\\block\\task\\layout.pug";
@@ -211,7 +211,5 @@ pug_html = pug_html + "\u003C\u002Fdiv\u003E";
         locals_for_with.isEditor :
         typeof isEditor !== 'undefined' ? isEditor : undefined, "similar" in locals_for_with ?
         locals_for_with.similar :
-        typeof similar !== 'undefined' ? similar : undefined, "tags" in locals_for_with ?
-        locals_for_with.tags :
-        typeof tags !== 'undefined' ? tags : undefined));
+        typeof similar !== 'undefined' ? similar : undefined));
     ;} catch (err) {pug_rethrow(err, pug_debug_filename, pug_debug_line);};return pug_html;} module.exports = task;

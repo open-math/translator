@@ -20,7 +20,7 @@ mixin task(task, isSimilar)
                 if (isSimilar)
                     .desc= i18n('task.similarNum') + ' ' + task.num
 
-                if (tags)
+                if (task.tags)
                     .tags
                         each tag in task.tags
                             .tag!= tag
