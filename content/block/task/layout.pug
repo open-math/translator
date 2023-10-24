@@ -1,7 +1,5 @@
 mixin task(task, isSimilar)
     .task(
-        id= isSimilar ? task.id : null,
-        class= isSimilar ? task.classes : null,
         class= task.script ? 'genTask' : null,
         data-hint-open= isEditor,
         data-solution-open= isEditor,
@@ -51,7 +49,7 @@ mixin task(task, isSimilar)
                         span= i18n(`task.${name}`)
                     .content!= content
 
-.taskHolder
+.taskHolder(id= id, class= classes)
     +task(locals)
 
     if (similar)
