@@ -1,6 +1,8 @@
 @use 'def/bp';
 @use 'def/size';
 
+@use 'include/util';
+
 [data-content]
 {
     --transitionSpeed: .2;
@@ -22,5 +24,28 @@
         text-align: left;
         letter-spacing: .03em;
         padding: size.$gap;
+    }
+
+    :target
+    {
+        position: relative;
+
+        &::after
+        {
+            content: " ";
+            position: absolute;
+            left: 0; top: 0; right: 0; bottom: 0;
+            animation: targetAnim 5s;
+            @include util.transition(background-color);
+            pointer-events: none;
+            touch-action: none;
+            z-index: 5;
+        }
+    }
+
+    @keyframes targetAnim
+    {
+        from    { background-color: hsla(203, 90%, 49%, 0.25); }
+        to      { background-color: transparent; }
     }
 }

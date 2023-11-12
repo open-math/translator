@@ -10,6 +10,7 @@ export class TaskBase extends Block
     hint:       Block[];
     solution:   Block[];
     answer:     Block[];
+    note:       Block[];
 }
 
 export class Task extends TaskBase

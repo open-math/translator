@@ -56,7 +56,7 @@ export class FTask extends ObjBlockFactory<Task>
 
         task.title = obj.title;
 
-        let fields = ['statement', 'hint', 'solution', 'answer'];
+        let fields = ['statement', 'hint', 'solution', 'answer', 'note'];
         for (let i = 0; i < fields.length; i++)
         {
             let field = fields[i];
@@ -124,7 +124,7 @@ export class VFTask extends BlockViewFactory<VTask, Task>
         view.title =        block.title;
         view.statement =    await this.renderer.renderBlocks(block.statement);
 
-        let sections = ['hint', 'solution', 'answer'].filter(section => block[section]);
+        let sections = ['hint', 'solution', 'answer', 'note'].filter(section => block[section]);
 
         for (let i = 0; i < sections.length; i++)
         {

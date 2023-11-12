@@ -168,7 +168,7 @@
             }
         }
 
-        $sections: (hint: '\e908', solution: '\e90a', answer: '\e909', similar: '\e90c');
+        $sections: (hint: '\e908', solution: '\e90a', answer: '\e909', similar: '\e90c', note: '\e90e');
 
         @each $sectionName, $sectionIcon in $sections
         {

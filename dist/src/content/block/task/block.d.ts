@@ -6,6 +6,7 @@ export declare class TaskBase extends Block {
     hint: Block[];
     solution: Block[];
     answer: Block[];
+    note: Block[];
 }
 export declare class Task extends TaskBase {
     type: string;

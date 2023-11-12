@@ -9,6 +9,7 @@ class TaskBase extends bitran_1.Block {
     hint;
     solution;
     answer;
+    note;
 }
 exports.TaskBase = TaskBase;
 class Task extends TaskBase {

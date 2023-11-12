@@ -38,7 +38,7 @@ class FTask extends bitran_1.ObjBlockFactory {
                 throw new Error(`Task must have '${requiredField}' property!'`);
         });
         task.title = obj.title;
-        let fields = ['statement', 'hint', 'solution', 'answer'];
+        let fields = ['statement', 'hint', 'solution', 'answer', 'note'];
         for (let i = 0; i < fields.length; i++) {
             let field = fields[i];
             if (field in obj)
@@ -83,7 +83,7 @@ class VFTask extends viewFactory_1.BlockViewFactory {
         });
         view.title = block.title;
         view.statement = await this.renderer.renderBlocks(block.statement);
-        let sections = ['hint', 'solution', 'answer'].filter(section => block[section]);
+        let sections = ['hint', 'solution', 'answer', 'note'].filter(section => block[section]);
         for (let i = 0; i < sections.length; i++) {
             let section = sections[i];
             view.sections[section] = await this.renderer.renderBlocks(block[section]);
