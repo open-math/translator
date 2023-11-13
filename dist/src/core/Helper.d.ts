@@ -10,5 +10,6 @@ export default abstract class Helper {
     }>;
     abstract getUnique(id: string): Promise<Block[]>;
     abstract i18n(phrase: string): string;
+    abstract getMathMacros(): object;
     static getFrom(obj: object): Helper;
 }

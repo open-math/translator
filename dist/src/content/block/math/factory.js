@@ -10,6 +10,7 @@ const macros_1 = __importDefault(require("./macros"));
 const block_1 = __importDefault(require("./block"));
 const viewFactory_1 = require("../../../core/viewFactory");
 const view_1 = require("./view");
+const Helper_1 = __importDefault(require("../../../core/Helper"));
 class FMath extends bitran_1.BlockFactory {
     isObj;
     canParse(strBlock) {
@@ -28,9 +29,10 @@ class FMath extends bitran_1.BlockFactory {
 exports.FMath = FMath;
 class VFMath extends viewFactory_1.BlockViewFactory {
     async setupBlockView(block) {
+        let helper = Helper_1.default.getFrom(this.renderer);
         let math = new view_1.VMath;
         try {
-            math.html = katex_1.default.renderToString(block.content, { displayMode: true, strict: false, macros: macros_1.default });
+            math.html = katex_1.default.renderToString(block.content, { displayMode: true, strict: false, macros: { ...macros_1.default, ...helper.getMathMacros() } });
         }
         catch (e) {
             e.texString = block.content;

@@ -9,6 +9,7 @@ const bitran_1 = require("bitran");
 const inliner_1 = __importDefault(require("./inliner"));
 const viewFactory_1 = require("../../../core/viewFactory");
 const view_1 = require("../../block/math/view");
+const Helper_1 = __importDefault(require("../../../core/Helper"));
 class FIMath extends bitran_1.InlinerFactory {
     regexp = /(?<!\\)\$(.+?)(?<!\\)\$/gm;
     async parse(match) {
@@ -20,8 +21,9 @@ class FIMath extends bitran_1.InlinerFactory {
 exports.FIMath = FIMath;
 class VFIMath extends viewFactory_1.InlinerViewFactory {
     async setupView(product) {
+        let helper = Helper_1.default.getFrom(this.renderer);
         let math = new view_1.VMath;
-        math.html = katex_1.default.renderToString(product.content, { displayMode: false, strict: false, macros: require('../../block/math/macros') });
+        math.html = katex_1.default.renderToString(product.content, { displayMode: false, strict: false, macros: { ...require('../../block/math/macros'), ...helper.getMathMacros() } });
         return math;
     }
     getRender(view) {

@@ -6,6 +6,7 @@ import macros from "./macros";
 import Math from "./block";
 import { BlockViewFactory } from "core/viewFactory";
 import { VMath } from "./view";
+import Helper from "core/Helper";
 
 export class FMath extends BlockFactory<Math>
 {
@@ -35,11 +36,12 @@ export class VFMath extends BlockViewFactory<VMath, Math>
 {
     async setupBlockView(block: Math)
     {
+        let helper = Helper.getFrom(this.renderer);
         let math = new VMath;
 
         try
         {
-            math.html = katex.renderToString(block.content, { displayMode: true, strict: false, macros: macros});
+            math.html = katex.renderToString(block.content, { displayMode: true, strict: false, macros: {...macros, ...helper.getMathMacros()} });
         }
         catch (e)
         {

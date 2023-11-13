@@ -14,6 +14,8 @@ export default abstract class Helper
 
     abstract i18n(phrase: string): string;
 
+    abstract getMathMacros(): object;
+
     static getFrom(obj: object)
     {
         return getInjectedProperty(obj, 'helper') as Helper;
