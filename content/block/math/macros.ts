@@ -8,4 +8,5 @@ export default {
 
     // Цвета
     "\\cBrand":     "#0f82ff",
+    "\\cRed":       "#d74b4b",
 }

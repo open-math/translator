@@ -3,5 +3,6 @@ declare const _default: {
     "\\andcases": string;
     "\\orcases": string;
     "\\cBrand": string;
+    "\\cRed": string;
 };
 export default _default;

@@ -8,4 +8,5 @@ exports.default = {
     "\\orcases": "\\left[\\begin{array}{ll} #1 \\end{array}\\right.",
     // Цвета
     "\\cBrand": "#0f82ff",
+    "\\cRed": "#d74b4b",
 };
