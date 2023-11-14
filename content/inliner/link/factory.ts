@@ -36,7 +36,7 @@ export class VFLink extends InlinerViewFactory<VLink, Link>
 
         if (targetLocation.target === '')
         {
-            link.target = `/${targetLocation.path}/@${targetLocation.type}/`;
+            link.target = `/${targetLocation.type}/${targetLocation.path}`;
             return link;
         }
 
@@ -58,6 +58,6 @@ export class VFLink extends InlinerViewFactory<VLink, Link>
         // Only works for topics!
         // TODO: Add contributors and other pages!
 
-        return `/${location.path}/@${location.type}/${location.target ? '#' + location.target : '' }`;
+        return `/${location.type}/${location.path}/${location.target ? '#' + location.target : '' }`;
     }
 }

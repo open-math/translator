@@ -52,7 +52,7 @@ class VFLink extends viewFactory_1.InlinerViewFactory {
             return link;
         }
         if (targetLocation.target === '') {
-            link.target = `/${targetLocation.path}/@${targetLocation.type}/`;
+            link.target = `/${targetLocation.type}/${targetLocation.path}`;
             return link;
         }
         link.target = this.locationToHref(targetLocation);
@@ -66,7 +66,7 @@ class VFLink extends viewFactory_1.InlinerViewFactory {
     locationToHref(location) {
         // Only works for topics!
         // TODO: Add contributors and other pages!
-        return `/${location.path}/@${location.type}/${location.target ? '#' + location.target : ''}`;
+        return `/${location.type}/${location.path}/${location.target ? '#' + location.target : ''}`;
     }
 }
 exports.VFLink = VFLink;
