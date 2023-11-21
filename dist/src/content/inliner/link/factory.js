@@ -32,6 +32,7 @@ const inliner_1 = __importDefault(require("./inliner"));
 const viewFactory_1 = require("../../../core/viewFactory");
 const view_1 = require("./view");
 const location_1 = __importStar(require("../../../core/location"));
+const Helper_1 = __importDefault(require("../../../core/Helper"));
 class FLink extends bitran_1.InlinerFactory {
     regexp = /\[(.+?)\]\((.+?)\)/gm;
     async parse(match) {
@@ -55,8 +56,10 @@ class VFLink extends viewFactory_1.InlinerViewFactory {
             link.target = `/${targetLocation.type}/${targetLocation.path}`;
             return link;
         }
+        let helper = Helper_1.default.getFrom(this.renderer);
+        let unique = await helper.getUnique(targetLocation.toString());
         link.target = this.locationToHref(targetLocation);
-        link.preview = product.target;
+        link.preview = unique ? product.target : null;
         return link;
     }
     async getRender(view) {

@@ -4,6 +4,7 @@ import Link from "./inliner";
 import { InlinerViewFactory } from "core/viewFactory";
 import { VLink } from "./view";
 import Location, { LocationType } from "core/location";
+import Helper from "core/Helper";
 
 export class FLink extends InlinerFactory<Link>
 {
@@ -40,8 +41,11 @@ export class VFLink extends InlinerViewFactory<VLink, Link>
             return link;
         }
 
+        let helper = Helper.getFrom(this.renderer);
+        let unique = await helper.getUnique(targetLocation.toString());
+
         link.target = this.locationToHref(targetLocation);
-        link.preview = product.target;
+        link.preview = unique ? product.target : null;
 
         return link;
     }

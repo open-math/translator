@@ -12,8 +12,8 @@
     
     .katex-display
     {
-        margin: 0;
-        .base { margin: calc(size.$gap/2.2) 0; }
+        margin: -10px 0;
+        .base { margin: 15px 0; }
 
         overflow: hidden;
         overflow-x: auto;
