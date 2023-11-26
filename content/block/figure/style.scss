@@ -1,4 +1,5 @@
 @use 'def/color';
+@use 'def/bp';
 @use 'include/util';
 
 [data-content] figure
@@ -47,6 +48,15 @@
         .secondary
         {
             font-size: .75em;
+        }
+
+        @include bp.max(mini)
+        {
+            .main > a,
+            .secondary
+            {
+                font-size: .735em;
+            }
         }
     }
 }
@@ -118,6 +128,15 @@
         {
             background: transparent;
             text-align: center;
+        }
+
+        @include bp.max(mini)
+        {
+            .main > a,
+            .secondary
+            {
+                font-size: .8em;
+            }
         }
     }
 
