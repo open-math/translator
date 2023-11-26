@@ -1,15 +1,15 @@
 import { BlockMeta, ObjBlockFactory } from "bitran";
 
 import Gallery from "./block";
-import { FImage, VFImage } from "../image/factory";
 import { BlockViewFactory } from "core/viewFactory";
 import VGallery from "./view";
+import { FImage, VFFigure } from "../figure/factory";
 
 export class FGallery extends ObjBlockFactory<Gallery>
 {
     objType = 'gallery';
 
-    async parseObj(obj: any, meta: BlockMeta): Promise<Gallery>
+    async parseObj(obj: any): Promise<Gallery>
     {
         let gallery = new Gallery;
 
@@ -40,7 +40,7 @@ export class VFGallery extends BlockViewFactory<VGallery, Gallery>
             view.images = [];
             view.renderedImages = [];
 
-        let factory = new VFImage(this.renderer);
+        let factory = new VFFigure(this.renderer);
 
         for (let i = 0; i < block.images.length; i++)
         {

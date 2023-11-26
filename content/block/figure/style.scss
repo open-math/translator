@@ -1,0 +1,163 @@
+@use 'def/color';
+@use 'include/util';
+
+[data-content] figure
+{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+
+    figcaption
+    {
+        text-align: center;
+        margin-top: 7.5px;
+        color: var(--c_text-muted);
+
+        .mathInline
+        {
+            color: inherit !important;
+        }
+
+        .main
+        {
+            > a
+            {
+                font-size: .8em;
+                font-weight: 600;
+                color: var(--c_text-muted) !important;
+                text-decoration-color: transparent;
+    
+                @include util.transition(text-decoration-color);
+    
+                &:hover,
+                &:active
+                {
+                    text-decoration-color: inherit;
+                }
+            }
+            
+            > i
+            {
+                margin-left: 7.5px;
+                font-size: 11px;
+                color: var(--c_text-dimmed);
+            }
+        }
+
+        .secondary
+        {
+            font-size: .75em;
+        }
+    }
+}
+
+//
+// Image + Video
+//
+
+[data-content] figure
+{
+    img,
+    video
+    {
+        display: block;
+        max-width: 100%;
+    }
+}
+
+//
+// Image
+//
+
+.pswp
+{
+    .pswp__dynamic-caption
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+
+        &, a
+        {
+            font-family: "Open Sans", sans-serif;
+            color: black;
+
+            @include color.themeDark
+            {
+                color: white;
+            }
+        }
+
+        a
+        {
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            &:hover { text-decoration-color: inherit; }
+        }
+
+        > .main
+        {
+            > i
+            {
+                opacity: .5;
+                margin-left: 7.5px;
+                font-size: 11px;
+                position: relative;
+                top: 1px;
+            }
+        }
+
+        > .secondary
+        {
+            font-size: 90%;
+            opacity: .65;
+        }
+
+        &--mobile
+        {
+            background: transparent;
+            text-align: center;
+        }
+    }
+
+    @include color.themeLight
+    {
+        --pswp-bg: white;
+        --pswp-icon-color: #4f4f4f;
+        --pswp-icon-color-secondary: white;
+    }
+
+    @include color.themeDark
+    {
+        img[data-invertible]
+        {
+            filter: hue-rotate(180deg) invert(100%);
+        }
+    }
+}
+
+[data-content] figure[data-type="image"]
+{
+    img
+    {
+        @include util.transition(filter);
+
+        &[data-invertible]
+        {
+            @include color.themeDark
+            {
+                filter: hue-rotate(180deg) invert(100%);
+            }
+        }
+    }
+}
+
+//
+// Video
+//
+
+[data-content] figure[data-type="video"]
+{
+    // TODO: Make invertible videos???
+}

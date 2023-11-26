@@ -7,9 +7,8 @@ let templates = {
     errorInliner: require('./errorInliner'),
     heading: require('./heading'),
     math: require('./math'),
+    figure: require('./figure'),
     imath: require('./imath'),
-    image: require('./image'),
-    errorImage: require('./errorImage'),
     accentBlock: require('./accentBlock'),
     gallery: require('./gallery'),
     link: require('./link'),
@@ -17,6 +16,7 @@ let templates = {
     array: require('./array'),
     table: require('./table'),
     task: require('./task'),
+    secondary: require('./secondary'),
     todo: require('./todo'),
 };
 function renderTemplate(name, locals = {}) {

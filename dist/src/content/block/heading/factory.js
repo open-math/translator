@@ -16,7 +16,7 @@ class FHeading extends bitran_1.BlockFactory {
         let match = strBlock.match(/^(#+) (.+)/);
         let heading = new block_1.default;
         heading.level = match[1].length;
-        heading.title = match[2];
+        heading.title = replaceQuotes(match[2]);
         return heading;
     }
 }
@@ -33,3 +33,13 @@ class VFHeading extends viewFactory_1.BlockViewFactory {
     }
 }
 exports.VFHeading = VFHeading;
+//
+//
+//
+function replaceQuotes(text) {
+    let isOpening = false;
+    let getQuote = () => {
+        return (isOpening = !isOpening) ? '«' : '»';
+    };
+    return text.replace(/"/gm, () => getQuote());
+}

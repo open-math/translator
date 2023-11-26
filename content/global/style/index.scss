@@ -9,8 +9,7 @@
 @use 'block/heading/style' as heading;
 @use 'block/hr/style' as hr;
 @use 'block/math/style' as math;
-@use 'block/image/style' as image;
-@use 'block/errorImage/style' as errorImage;
+@use 'block/figure/style' as figure;
 @use 'block/accentBlock/style' as accentBlock;
 @use 'block/gallery/style' as gallery;
 @use 'block/list/style' as list;
@@ -18,6 +17,7 @@
 @use 'block/table/style' as table;
 @use 'block/task/style' as task;
 @use 'block/spoiler/style' as spoiler;
+@use 'block/secondary/style' as secondary;
 @use 'block/todo/style' as todo;
 
 //

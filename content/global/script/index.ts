@@ -1,33 +1,23 @@
-import { init as image } from "content/block/image/script";
+import { init as figure } from "content/block/figure/script";
 import { init as accentBlock } from "content/block/accentBlock/script";
 import { init as gallery } from "content/block/gallery/script";
 import { init as link } from "content/inliner/link/script";
 import { GenTaskManager, init as task} from "content/block/task/script";
 
-export type ContentOptions = {
-    vendor: {
-        photoSwipe: { [key: string]: string }
-    }
-};
-
-//
-//
-//
-
 let products = [
-    image,
+    figure,
     accentBlock,
     gallery,
     link,
     task,
 ];
 
-export function initProducts(contentElem: HTMLElement, gOptions: ContentOptions = {} as ContentOptions)
+export function initProducts(contentElem: HTMLElement)
 {
     if (!contentElem)
         return;
 
-    products.forEach(product => product(contentElem, gOptions));
+    products.forEach(product => product(contentElem));
 }
 
 globalThis.GenTaskManager = new GenTaskManager;

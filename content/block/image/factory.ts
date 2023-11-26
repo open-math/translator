@@ -20,7 +20,7 @@ export class FImage extends ObjBlockFactory<Image>
 
         let imgLocation = this.locationFromSrc(obj.src);
 
-        if (!(await helper.hasImage(imgLocation)))
+        if (!(await helper.hasAsset(imgLocation)))
             throw new Error(`Missing image '${imgLocation}'!`);
 
         let size = await helper.getImageSize(imgLocation);
@@ -89,7 +89,7 @@ export class VFImage extends BlockViewFactory<VImage, Image>
     async setupBlockView(block: Image)
     {
         let view = new VImage;
-            view.src = await this.renderer.helper.getImageSrc(block.src);
+            view.src = await this.renderer.helper.getAssetSrc(block.src);
             view.width = block.width;
             view.height = block.height;
             view.invertible = block.invertible;

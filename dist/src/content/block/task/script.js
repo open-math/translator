@@ -99,7 +99,7 @@ class GenTaskManager {
             Object.keys(response.sections).forEach(sectionName => {
                 genTask.setSectionContent(sectionName, response.sections[sectionName]);
             });
-        (0, script_1.initProducts)(genTask.elements.task, globalThis.OMathContentOptions ?? {});
+        (0, script_1.initProducts)(genTask.elements.task);
         genTask.elements.task.removeAttribute('data-generating');
         delete this.taskMap[response.scriptId];
     }

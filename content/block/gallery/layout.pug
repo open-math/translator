@@ -6,7 +6,7 @@
                     .hoverOverlay
                         i.ic-eye
                     .imgWrapper
-                        img(src= image.src, loading="lazy", data-invertible= image.invertible ? '' : null)
+                        img(src= image.content.src, loading="lazy", data-invertible= image.content.invertible ? '' : null)
 
     .display
         each image, i in renderedImages

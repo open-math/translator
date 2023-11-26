@@ -1,10 +1,8 @@
-import type { ContentOptions } from "content/global/script";
-
 declare let PhotoSwipe, PhotoSwipeLightbox, PhotoSwipeDynamicCaption;
 
-export function init(contentElem: HTMLElement, options: ContentOptions)
+export function init(contentElem: HTMLElement)
 {
-    contentElem.querySelectorAll('.image').forEach(imgElem => initPhotoSwipeIn(imgElem, options?.vendor?.photoSwipe));
+    //contentElem.querySelectorAll('.image').forEach(imgElem => initPhotoSwipeIn(imgElem, options?.vendor?.photoSwipe));
 }
 
 function initPhotoSwipeIn(imgElement: Element, phrases)

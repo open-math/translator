@@ -12,10 +12,7 @@ import { VFErrorBlock } from "content/block/errorBlock/factory";
 import { VFHeading } from "content/block/heading/factory";
 import { VFHr } from "content/block/hr/factory";
 import { VFMath } from "content/block/math/factory";
-import { VFImage } from "content/block/image/factory";
-import { VFErrorImage } from "content/block/errorImage/factory";
 import { VFAccentBlock } from "content/block/accentBlock/factory";
-import { VFGallery } from "content/block/gallery/factory";
 import { VFInclude } from "content/block/include/factory";
 import { VFList } from "content/block/list/factory";
 import { VFHtml } from "content/block/html/factory";
@@ -24,6 +21,9 @@ import { VFTable } from "content/block/table/factory";
 import { VFTask } from "content/block/task/factory";
 import { VFSpoiler } from "content/block/spoiler/factory";
 import { VFTodo } from "content/block/todo/factory";
+import { VFFigure } from "content/block/figure/factory";
+import { VFGallery } from "content/block/gallery/factory";
+import { VFSecondary } from "content/block/secondary/factory";
 
 // Inliner Factories
 import { VFText } from "content/inliner/text/factory";
@@ -51,13 +51,13 @@ export default class Renderer
         heading:    VFHeading,
         hr:         VFHr,
         math:       VFMath,
-        image:      VFImage,
-        errorImage: VFErrorImage,
+        figure:     VFFigure,
         gallery:    VFGallery,
         list:       VFList,
         array:      VFArray,
         table:      VFTable,
         task:       VFTask,
+        secondary:  VFSecondary,
 
         spoiler:    VFSpoiler,
 

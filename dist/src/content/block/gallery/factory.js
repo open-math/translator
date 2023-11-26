@@ -6,12 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.VFGallery = exports.FGallery = void 0;
 const bitran_1 = require("bitran");
 const block_1 = __importDefault(require("./block"));
-const factory_1 = require("../image/factory");
 const viewFactory_1 = require("../../../core/viewFactory");
 const view_1 = __importDefault(require("./view"));
+const factory_1 = require("../figure/factory");
 class FGallery extends bitran_1.ObjBlockFactory {
     objType = 'gallery';
-    async parseObj(obj, meta) {
+    async parseObj(obj) {
         let gallery = new block_1.default;
         if (!obj.images)
             throw new Error(`Gallery must have an 'images' property!`);
@@ -32,7 +32,7 @@ class VFGallery extends viewFactory_1.BlockViewFactory {
         let view = new view_1.default;
         view.images = [];
         view.renderedImages = [];
-        let factory = new factory_1.VFImage(this.renderer);
+        let factory = new factory_1.VFFigure(this.renderer);
         for (let i = 0; i < block.images.length; i++) {
             let vImage = await factory.setupView(block.images[i]);
             view.images.push(vImage);

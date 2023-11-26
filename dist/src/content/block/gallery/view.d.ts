@@ -1,7 +1,7 @@
 import BlockView from "../../../core/block/BlockView";
-import { VImage } from "../image/view";
+import { VFigure } from "../figure/view";
 export default class VGallery extends BlockView {
-    images: VImage[];
+    images: VFigure[];
     renderedImages: string[];
     start: number;
 }

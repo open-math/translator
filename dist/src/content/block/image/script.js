@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
-function init(contentElem, options) {
-    contentElem.querySelectorAll('.image').forEach(imgElem => initPhotoSwipeIn(imgElem, options?.vendor?.photoSwipe));
+function init(contentElem) {
+    //contentElem.querySelectorAll('.image').forEach(imgElem => initPhotoSwipeIn(imgElem, options?.vendor?.photoSwipe));
 }
 exports.init = init;
 function initPhotoSwipeIn(imgElement, phrases) {

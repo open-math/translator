@@ -17,7 +17,6 @@ import Helper from "./Helper";
 import { FHeading } from "content/block/heading/factory";
 import { FHr } from "content/block/hr/factory";
 import { FMath } from "content/block/math/factory";
-import { FImage } from "content/block/image/factory";
 import { FDefinition, FExample, FImportant, FThreorem } from "content/block/accentBlock/factory";
 import { FGallery } from "content/block/gallery/factory";
 import { FInclude } from "content/block/include/factory";
@@ -28,6 +27,8 @@ import { FArray } from "content/block/array/factory";
 import { FTable } from "content/block/table/factory";
 import { FTask } from "content/block/task/factory";
 import { FTodo } from "content/block/todo/factory";
+import { FImage, FVideo } from "content/block/figure/factory";
+import { FSecondary } from "content/block/secondary/factory";
 
 // Inline Factories
 import { FIMath } from "content/inliner/imath/factory";
@@ -43,12 +44,14 @@ export default class Parser
         FHr,
         FMath,
         FImage,
+        FVideo,
         FGallery,
         FList,
         FBlockList,
         FArray,
         FTable,
         FTask,
+        FSecondary,
 
         FHtml,
 

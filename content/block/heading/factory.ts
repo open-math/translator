@@ -18,7 +18,7 @@ export class FHeading extends BlockFactory<Heading>
 
         let heading = new Heading;
             heading.level = match[1].length;
-            heading.title = match[2];
+            heading.title = replaceQuotes(match[2]);
 
         return heading;
     }
@@ -39,4 +39,20 @@ export class VFHeading extends BlockViewFactory<VHeading, Heading>
     {
         return this.renderBlockView(view);
     }
+}
+
+//
+//
+//
+
+function replaceQuotes(text: string)
+{
+    let isOpening = false;
+
+    let getQuote = () =>
+    {
+        return (isOpening = !isOpening) ? '«' : '»';
+    }
+
+    return text.replace(/"/gm, () => getQuote());
 }

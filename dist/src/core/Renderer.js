@@ -12,18 +12,18 @@ const factory_2 = require("../content/block/errorBlock/factory");
 const factory_3 = require("../content/block/heading/factory");
 const factory_4 = require("../content/block/hr/factory");
 const factory_5 = require("../content/block/math/factory");
-const factory_6 = require("../content/block/image/factory");
-const factory_7 = require("../content/block/errorImage/factory");
-const factory_8 = require("../content/block/accentBlock/factory");
-const factory_9 = require("../content/block/gallery/factory");
-const factory_10 = require("../content/block/include/factory");
-const factory_11 = require("../content/block/list/factory");
-const factory_12 = require("../content/block/html/factory");
-const factory_13 = require("../content/block/array/factory");
-const factory_14 = require("../content/block/table/factory");
-const factory_15 = require("../content/block/task/factory");
-const factory_16 = require("../content/block/spoiler/factory");
-const factory_17 = require("../content/block/todo/factory");
+const factory_6 = require("../content/block/accentBlock/factory");
+const factory_7 = require("../content/block/include/factory");
+const factory_8 = require("../content/block/list/factory");
+const factory_9 = require("../content/block/html/factory");
+const factory_10 = require("../content/block/array/factory");
+const factory_11 = require("../content/block/table/factory");
+const factory_12 = require("../content/block/task/factory");
+const factory_13 = require("../content/block/spoiler/factory");
+const factory_14 = require("../content/block/todo/factory");
+const factory_15 = require("../content/block/figure/factory");
+const factory_16 = require("../content/block/gallery/factory");
+const factory_17 = require("../content/block/secondary/factory");
 // Inliner Factories
 const factory_18 = require("../content/inliner/text/factory");
 const factory_19 = require("../content/inliner/imath/factory");
@@ -43,21 +43,21 @@ class Renderer {
         heading: factory_3.VFHeading,
         hr: factory_4.VFHr,
         math: factory_5.VFMath,
-        image: factory_6.VFImage,
-        errorImage: factory_7.VFErrorImage,
-        gallery: factory_9.VFGallery,
-        list: factory_11.VFList,
-        array: factory_13.VFArray,
-        table: factory_14.VFTable,
-        task: factory_15.VFTask,
-        spoiler: factory_16.VFSpoiler,
-        html: factory_12.VFHtml,
-        include: factory_10.VFInclude,
-        important: factory_8.VFAccentBlock,
-        example: factory_8.VFAccentBlock,
-        definition: factory_8.VFAccentBlock,
-        theorem: factory_8.VFAccentBlock,
-        todo: factory_17.VFTodo,
+        figure: factory_15.VFFigure,
+        gallery: factory_16.VFGallery,
+        list: factory_8.VFList,
+        array: factory_10.VFArray,
+        table: factory_11.VFTable,
+        task: factory_12.VFTask,
+        secondary: factory_17.VFSecondary,
+        spoiler: factory_13.VFSpoiler,
+        html: factory_9.VFHtml,
+        include: factory_7.VFInclude,
+        important: factory_6.VFAccentBlock,
+        example: factory_6.VFAccentBlock,
+        definition: factory_6.VFAccentBlock,
+        theorem: factory_6.VFAccentBlock,
+        todo: factory_14.VFTodo,
     };
     inlinerFactories = {
         text: factory_18.VFText,

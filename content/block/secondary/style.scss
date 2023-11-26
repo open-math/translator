@@ -1,0 +1,121 @@
+@use 'def/size';
+@use 'def/bp';
+@use 'include/util';
+
+[data-content] section.secondary
+{
+    display: flex;
+    align-items: start;
+    gap: 30px;
+
+    > .icon
+    {
+        border-radius: 50%;
+        border: 1.5px solid var(--c_border);
+
+        img
+        {
+            display: block;
+            object-fit: contain;
+            @include util.size(60px);
+            border-radius: 50%;
+            border: 2px solid var(--c_bg-content);
+        }
+    }
+
+    > .dataContainer
+    {
+        font-family: 'Noto Serif', serif;
+        font-size: 90%;
+
+        display: flex;
+        flex-direction: column;
+        gap: size.$gapSmall;
+
+        position: relative;
+
+        flex: 1;
+        padding: size.$gap;
+        background: var(--c_bg-content-shade);
+        border: 1px solid var(--c_border);
+        border-radius: size.$borderRadius;
+        border-top-left-radius: 0;
+
+        @include bp.max(mini)
+        {
+            border-top-left-radius: size.$borderRadius;
+        }
+
+        > .triangle
+        {
+            --triangleSize: 20px;
+
+            position: absolute;
+            top: -1px;
+            left: calc(-1 * var(--triangleSize));
+
+            width: 0px;
+            height: 0px;
+            border-style: solid;
+            border-width: 0 var(--triangleSize) var(--triangleSize) 0;
+            border-color: transparent var(--c_border) transparent transparent;
+            transform: rotate(0deg);
+
+            &::after
+            {
+                --innerTriangleSize: calc(var(--triangleSize) - 2px);
+
+                content: "";
+                position: absolute;
+                right: calc(-1 * var(--triangleSize));
+                top: 1px;
+
+                width: 0px;
+                height: 0px;
+                border-style: solid;
+                border-width: 0 var(--innerTriangleSize) var(--innerTriangleSize) 0;
+                border-color: transparent var(--c_bg-content-shade) transparent transparent;
+                transform: rotate(0deg);
+            }
+        }
+
+        > header
+        {
+            display: flex;
+            gap: size.$gapSmall;
+            align-items: center;
+
+            > img
+            {
+                @include util.size(30px);
+                border-radius: 50%;
+                display: none;
+            }
+
+            > .title
+            {
+                font-weight: 600;
+            }
+        }
+        
+
+        > .content
+        {
+            display: flex;
+            flex-direction: column;
+            gap: size.$gapSmall;
+        }
+    }
+
+    @include bp.max(mini)
+    {
+        > .icon,
+        > .dataContainer > .triangle
+        { display: none; }
+
+        > .dataContainer
+        {
+            > header > img { display: block; }
+        }
+    }
+}

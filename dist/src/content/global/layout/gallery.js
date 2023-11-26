@@ -31,7 +31,7 @@ pug_html = pug_html + "\u003Ci class=\"ic-eye\"\u003E\u003C\u002Fi\u003E\u003C\u
 ;pug_debug_line = 8;pug_debug_filename = "content\\block\\gallery\\layout.pug";
 pug_html = pug_html + "\u003Cdiv class=\"imgWrapper\"\u003E";
 ;pug_debug_line = 9;pug_debug_filename = "content\\block\\gallery\\layout.pug";
-pug_html = pug_html + "\u003Cimg" + (pug_attr("src", image.src, true, false)+" loading=\"lazy\""+pug_attr("data-invertible", image.invertible ? '' : null, true, false)) + "\u002F\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cimg" + (pug_attr("src", image.content.src, true, false)+" loading=\"lazy\""+pug_attr("data-invertible", image.content.invertible ? '' : null, true, false)) + "\u002F\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
       }
   } else {
     var $$l = 0;
@@ -47,7 +47,7 @@ pug_html = pug_html + "\u003Ci class=\"ic-eye\"\u003E\u003C\u002Fi\u003E\u003C\u
 ;pug_debug_line = 8;pug_debug_filename = "content\\block\\gallery\\layout.pug";
 pug_html = pug_html + "\u003Cdiv class=\"imgWrapper\"\u003E";
 ;pug_debug_line = 9;pug_debug_filename = "content\\block\\gallery\\layout.pug";
-pug_html = pug_html + "\u003Cimg" + (pug_attr("src", image.src, true, false)+" loading=\"lazy\""+pug_attr("data-invertible", image.invertible ? '' : null, true, false)) + "\u002F\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cimg" + (pug_attr("src", image.content.src, true, false)+" loading=\"lazy\""+pug_attr("data-invertible", image.content.invertible ? '' : null, true, false)) + "\u002F\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
     }
   }
 }).call(this);

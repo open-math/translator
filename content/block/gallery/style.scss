@@ -1,4 +1,5 @@
 @use 'def/size';
+@use 'def/color';
 @use 'include/scroll';
 @use 'include/util';
 
@@ -102,6 +103,16 @@
                             display: block;
                             height: $previewSize;
                             object-fit: cover;
+
+                            @include util.transition(filter);
+
+                            &[data-invertible]
+                            {
+                                @include color.themeDark
+                                {
+                                    filter: hue-rotate(180deg) invert(100%);
+                                }
+                            }
                         }
                     }
                 }

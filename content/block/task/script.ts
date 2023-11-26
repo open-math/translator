@@ -158,7 +158,7 @@ export class GenTaskManager
                 genTask.setSectionContent(sectionName, response.sections[sectionName]);
             });
 
-        initProducts(genTask.elements.task as HTMLElement, globalThis.OMathContentOptions ?? {});
+        initProducts(genTask.elements.task as HTMLElement);
 
         genTask.elements.task.removeAttribute('data-generating');
 

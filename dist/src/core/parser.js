@@ -14,20 +14,21 @@ const ErrorSwap_1 = __importDefault(require("./ErrorSwap"));
 const factory_1 = require("../content/block/heading/factory");
 const factory_2 = require("../content/block/hr/factory");
 const factory_3 = require("../content/block/math/factory");
-const factory_4 = require("../content/block/image/factory");
-const factory_5 = require("../content/block/accentBlock/factory");
-const factory_6 = require("../content/block/gallery/factory");
-const factory_7 = require("../content/block/include/factory");
-const factory_8 = require("../content/block/spoiler/factory");
-const factory_9 = require("../content/block/list/factory");
-const factory_10 = require("../content/block/html/factory");
-const factory_11 = require("../content/block/array/factory");
-const factory_12 = require("../content/block/table/factory");
-const factory_13 = require("../content/block/task/factory");
-const factory_14 = require("../content/block/todo/factory");
+const factory_4 = require("../content/block/accentBlock/factory");
+const factory_5 = require("../content/block/gallery/factory");
+const factory_6 = require("../content/block/include/factory");
+const factory_7 = require("../content/block/spoiler/factory");
+const factory_8 = require("../content/block/list/factory");
+const factory_9 = require("../content/block/html/factory");
+const factory_10 = require("../content/block/array/factory");
+const factory_11 = require("../content/block/table/factory");
+const factory_12 = require("../content/block/task/factory");
+const factory_13 = require("../content/block/todo/factory");
+const factory_14 = require("../content/block/figure/factory");
+const factory_15 = require("../content/block/secondary/factory");
 // Inline Factories
-const factory_15 = require("../content/inliner/imath/factory");
-const factory_16 = require("../content/inliner/link/factory");
+const factory_16 = require("../content/inliner/imath/factory");
+const factory_17 = require("../content/inliner/link/factory");
 class Parser {
     location;
     helper;
@@ -35,25 +36,27 @@ class Parser {
         factory_1.FHeading,
         factory_2.FHr,
         factory_3.FMath,
-        factory_4.FImage,
-        factory_6.FGallery,
-        factory_9.FList,
-        factory_9.FBlockList,
-        factory_11.FArray,
-        factory_12.FTable,
-        factory_13.FTask,
-        factory_10.FHtml,
-        factory_7.FInclude,
-        factory_8.FSpoiler,
-        factory_5.FImportant,
-        factory_5.FExample,
-        factory_5.FDefinition,
-        factory_5.FThreorem,
-        factory_14.FTodo,
+        factory_14.FImage,
+        factory_14.FVideo,
+        factory_5.FGallery,
+        factory_8.FList,
+        factory_8.FBlockList,
+        factory_10.FArray,
+        factory_11.FTable,
+        factory_12.FTask,
+        factory_15.FSecondary,
+        factory_9.FHtml,
+        factory_6.FInclude,
+        factory_7.FSpoiler,
+        factory_4.FImportant,
+        factory_4.FExample,
+        factory_4.FDefinition,
+        factory_4.FThreorem,
+        factory_13.FTodo,
     ];
     inlinerFactories = [
-        factory_15.FIMath,
-        factory_16.FLink,
+        factory_16.FIMath,
+        factory_17.FLink,
     ];
     constructor(location, helper) {
         this.location = location;

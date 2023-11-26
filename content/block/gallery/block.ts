@@ -1,10 +1,9 @@
 import { Block } from "bitran";
-
-import Image from "../image/block";
+import { Figure } from "../figure/block";
 
 export default class Gallery extends Block
 {
     type = 'gallery';
-    images: Image[];
+    images: Figure[];
     start: number;
 }

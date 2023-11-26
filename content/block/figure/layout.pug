@@ -1,0 +1,30 @@
+mixin figureContent(content)
+    case content.type
+        when 'image'
+            a(
+                href= content.src,
+                data-pswp-width= content.size.width,
+                data-pswp-height= content.size.height,
+                data-pswp-single="",
+                target="_blank"
+            )
+                img(src= content.src, loading="lazy", data-invertible= content.invertible)
+        when 'video'
+            video(src= content.src, preload="metadata", loop="", muted="", controls="")
+
+mixin figureCaption(caption)
+    figcaption(class= { centered: caption.centered })
+        .main
+            a(href= caption.link)!= caption.main
+            if (caption.link)
+                i.ic-up-right-from-square
+
+        if (caption.secondary)
+            .secondary!= caption.secondary
+
+figure(data-type= content.type, data-uuid= uuid, id= id, class= classes)
+    +figureContent(content)
+    if (caption)
+        +figureCaption(caption)
+
+    style!= widthCss

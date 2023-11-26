@@ -2,8 +2,8 @@ import { Block } from "bitran";
 import Location from "./location";
 export default abstract class Helper {
     abstract isEditor(): boolean;
-    abstract hasImage(location: Location): Promise<boolean>;
-    abstract getImageSrc(location: Location): Promise<string>;
+    abstract hasAsset(location: Location): Promise<boolean>;
+    abstract getAssetSrc(location: Location): Promise<string>;
     abstract getImageSize(location: Location): Promise<{
         width: number;
         height: number;
