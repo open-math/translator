@@ -1,17 +1,25 @@
 {
     "name": "translator",
-    "version": "1.0.22",
+    "version": "1.1.0",
+    "main": "./dist/node/core/index.js",
+    "types": "./dist/node/core/index.d.ts",
     "exports": {
-        ".": "./dist/src/core/index.js",
-        "./content": "./dist/src/content/index.js",
-        "./node": "./dist/src/core/node/index.js"
+        ".":                    "./dist/node/core/index.js",
+        "./products":           "./dist/node/content/index.js",
+        "./browser":            "./dist/browser/core.js",
+        "./browser/products":   "./dist/browser/products.js",
+        "./content/*":          "./dist/content/*"
+    },
+    "typesVersions": {
+        "*": {
+            "products":         ["./dist/node/content/index.d.ts"],
+            "browser":          ["./dist/node/core/index.d.ts"],
+            "browser/products": ["./dist/node/content/index.d.ts"]
+        }
     },
     "scripts": {
-        "clear": "npx ts-node core/cli/clear",
-        "core": "tsc && tsc-alias",
-        "content": "npx ts-node core/cli/content/build",
-        "build": "npm run clear && npm run core && npm run content",
-        "build-dev": "npm run clear && npm run core && npm run content -- --dev",
+        "build": "npx rimraf dist && npx ts-node build/template && tsc && tsc-alias && npx ts-node build/index",
+        "build-dev": "npx ts-node build/template && tsc && tsc-alias && npx ts-node build/index --dev",
         "watch": "npx nodemon --watch content/**/* --watch core/**/* --ext * --exec \"npm run build-dev\""
     },
     "devDependencies": {
@@ -19,7 +27,7 @@
         "glob": "^10.3.3",
         "nodemon": "^3.0.1",
         "pug": "^3.0.2",
-        "rimraf": "^5.0.1",
+        "rimraf": "^5.0.5",
         "sass": "^1.66.1",
         "ts-node": "^10.9.1",
         "tsc-alias": "^1.8.7",

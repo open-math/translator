@@ -12,8 +12,10 @@
 
         "target": "ESNext",
         "module": "CommonJS",
-        "outDir": "dist/src",
-        "declaration": true
+
+        "outDir": "dist/node",
+        "declaration": true,
+        "incremental": true,
     },
 
     "ts-node":
