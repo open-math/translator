@@ -9,6 +9,7 @@ export class VideoFigureContent extends FigureContent
 {
     type =  FigureType.Video;
     src:    Location;
+    invert: string;
 
     static async setupContent(raw: any, context: Location, helper: Helper): Promise<VideoFigureContent>
     {
@@ -25,6 +26,9 @@ export class VideoFigureContent extends FigureContent
 
             let video = new VideoFigureContent;
                 video.src = videoLocation;
+                
+            if (typeof raw.invert === 'string')
+                video.invert = raw.invert;
 
             return video;
         }
@@ -45,7 +49,8 @@ export class VideoFigureContent extends FigureContent
 export class VideoVFigureContent extends VFigureContent
 {
     type =  FigureType.Video;
-    src:    string;
+    src:        string;
+    invert?:    string;
 
     static async setupContent(content: VideoFigureContent, helper: Helper): Promise<VideoVFigureContent>
     {
@@ -53,6 +58,7 @@ export class VideoVFigureContent extends VFigureContent
         {
             let view = new VideoVFigureContent;
                 view.src = await helper.getAssetSrc(content.src);
+                view.invert = content.invert;
 
             return view;
         }

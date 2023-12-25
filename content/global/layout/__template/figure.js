@@ -18,11 +18,11 @@ case 'image':
 ;pug_debug_line = 4;pug_debug_filename = "content\\block\\figure\\layout.pug";
 pug_html = pug_html + "\u003Ca" + (pug_attr("href", content.src, true, false)+pug_attr("data-pswp-width", content.size.width, true, false)+pug_attr("data-pswp-height", content.size.height, true, false)+" data-pswp-single=\"\" target=\"_blank\"") + "\u003E";
 ;pug_debug_line = 11;pug_debug_filename = "content\\block\\figure\\layout.pug";
-pug_html = pug_html + "\u003Cimg" + (pug_attr("src", content.src, true, false)+" loading=\"lazy\""+pug_attr("data-invertible", content.invertible, true, false)) + "\u002F\u003E\u003C\u002Fa\u003E";
+pug_html = pug_html + "\u003Cimg" + (pug_attr("src", content.src, true, false)+" loading=\"lazy\""+pug_attr("data-invert", content.invert, true, false)) + "\u002F\u003E\u003C\u002Fa\u003E";
   break;
 case 'video':
 ;pug_debug_line = 13;pug_debug_filename = "content\\block\\figure\\layout.pug";
-pug_html = pug_html + "\u003Cvideo" + (pug_attr("src", content.src, true, false)+" preload=\"metadata\" loop=\"\" muted=\"\" controls=\"\"") + "\u003E\u003C\u002Fvideo\u003E";
+pug_html = pug_html + "\u003Cvideo" + (pug_attr("src", content.src, true, false)+" preload=\"metadata\" loop=\"\" muted=\"\" controls=\"\""+pug_attr("data-invert", content.invert, true, false)) + "\u003E\u003C\u002Fvideo\u003E";
   break;
 }
 };
@@ -55,15 +55,18 @@ pug_html = pug_html + "\u003C\u002Ffigcaption\u003E";
 ;pug_debug_line = 25;pug_debug_filename = "content\\block\\figure\\layout.pug";
 pug_html = pug_html + "\u003Cfigure" + (pug_attr("class", pug_classes([classes], [true]), false, false)+pug_attr("data-type", content.type, true, false)+pug_attr("data-uuid", uuid, true, false)+pug_attr("id", id, true, false)) + "\u003E";
 ;pug_debug_line = 26;pug_debug_filename = "content\\block\\figure\\layout.pug";
-pug_mixins["figureContent"](content);
+pug_html = pug_html + "\u003Cdiv class=\"figureContent\"\u003E";
 ;pug_debug_line = 27;pug_debug_filename = "content\\block\\figure\\layout.pug";
-if ((caption)) {
+pug_mixins["figureContent"](content);
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 28;pug_debug_filename = "content\\block\\figure\\layout.pug";
+if ((caption)) {
+;pug_debug_line = 29;pug_debug_filename = "content\\block\\figure\\layout.pug";
 pug_mixins["figureCaption"](caption);
 }
-;pug_debug_line = 30;pug_debug_filename = "content\\block\\figure\\layout.pug";
+;pug_debug_line = 31;pug_debug_filename = "content\\block\\figure\\layout.pug";
 pug_html = pug_html + "\u003Cstyle\u003E";
-;pug_debug_line = 30;pug_debug_filename = "content\\block\\figure\\layout.pug";
+;pug_debug_line = 31;pug_debug_filename = "content\\block\\figure\\layout.pug";
 pug_html = pug_html + (null == (pug_interp = widthCss) ? "" : pug_interp) + "\u003C\u002Fstyle\u003E\u003C\u002Ffigure\u003E";
     }.call(this, "caption" in locals_for_with ?
         locals_for_with.caption :

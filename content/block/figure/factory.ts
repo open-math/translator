@@ -87,6 +87,9 @@ async function setupCaption(rawCaption, parser: Parser)
 
         if (rawCaption['link'])
             caption.link = rawCaption.link;
+
+        if (rawCaption['maxWidth'])
+            caption.maxWidth = rawCaption.maxWidth;
     }
 
     return caption;
@@ -166,7 +169,7 @@ async function setupBaseVFigure(block: Figure, renderer: Renderer)
 {
     let view = new VFigure;
         view.uuid = block.uuid;
-        view.widthCss = getWidthCss(view.uuid, block.widthSet);
+        view.widthCss = getWidthCss(view.uuid, block.widthSet, block.caption?.maxWidth);
         view.caption = await setupVCaption(block.caption, renderer);
 
     return view;
@@ -184,16 +187,18 @@ async function setupVCaption(caption: FigureCaption, renderer: Renderer)
     if (caption.secondary)
         vCaption.secondary = await renderer.renderInliners(caption.secondary);
 
+    vCaption.maxWidth = caption.maxWidth;
+
     return vCaption;
 }
 
-function getWidthCss(uuid: string, widthSet: object)
+function getWidthCss(uuid: string, widthSet: object, captionMaxWidth?: string)
 {
     let css = '';
 
     let rule = (width: string) =>
     {
-        return `figure[data-uuid="${uuid}"] { width: ${width}; }`;
+        return `figure[data-uuid="${uuid}"] ${captionMaxWidth ? '> .figureContent' : ''} { width: ${width}; }`;
     }
 
     let mediaRule = (minWidth: string, width: string) =>
@@ -202,6 +207,9 @@ function getWidthCss(uuid: string, widthSet: object)
     }
 
     css += rule(widthSet['full']) + '\n\n';
+
+    if (captionMaxWidth)
+        css += `figure[data-uuid="${uuid}"] > figcaption { max-width: ${captionMaxWidth}; }` + '\n\n';
 
     Object.keys(widthSet).forEach(minWidth =>
     {

@@ -18,6 +18,7 @@ export class VFigureCaption
     main:       string;
     secondary:  string;
     link:       string;
+    maxWidth:   string;
 }
 
 export abstract class VFigureContent

@@ -13,6 +13,7 @@ export declare class FigureCaption {
     main: Inliner[];
     secondary: Inliner[];
     link: string;
+    maxWidth: string;
 }
 export declare abstract class FigureContent {
     abstract type: FigureType;

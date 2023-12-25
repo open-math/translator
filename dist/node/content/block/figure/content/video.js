@@ -8,6 +8,7 @@ const util_1 = require("../util");
 class VideoFigureContent extends block_1.FigureContent {
     type = global_1.FigureType.Video;
     src;
+    invert;
     static async setupContent(raw, context, helper) {
         try {
             if (!raw.src)
@@ -18,6 +19,8 @@ class VideoFigureContent extends block_1.FigureContent {
                 throw new Error(`Missing video ${videoLocation}!`);
             let video = new VideoFigureContent;
             video.src = videoLocation;
+            if (typeof raw.invert === 'string')
+                video.invert = raw.invert;
             return video;
         }
         catch (e) {
@@ -34,10 +37,12 @@ exports.VideoFigureContent = VideoFigureContent;
 class VideoVFigureContent extends view_1.VFigureContent {
     type = global_1.FigureType.Video;
     src;
+    invert;
     static async setupContent(content, helper) {
         try {
             let view = new VideoVFigureContent;
             view.src = await helper.getAssetSrc(content.src);
+            view.invert = content.invert;
             return view;
         }
         catch (e) {

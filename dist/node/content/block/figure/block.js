@@ -14,6 +14,7 @@ class FigureCaption {
     main;
     secondary;
     link;
+    maxWidth;
 }
 exports.FigureCaption = FigureCaption;
 class FigureContent {

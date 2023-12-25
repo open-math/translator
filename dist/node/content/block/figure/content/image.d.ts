@@ -8,13 +8,13 @@ export declare class ImageFigureContent extends FigureContent {
     type: FigureType;
     src: Location;
     size: Size;
-    invertible: boolean;
+    invert: string;
     static setupContent(raw: any, context: Location, helper: Helper): Promise<ImageFigureContent>;
 }
 export declare class ImageVFigureContent extends VFigureContent {
     type: FigureType;
     src: string;
     size: Size;
-    invertible: boolean;
+    invert?: string;
     static setupContent(content: ImageFigureContent, context: Location, helper: Helper): Promise<ImageVFigureContent>;
 }

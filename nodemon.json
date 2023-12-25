@@ -1,0 +1,5 @@
+{
+    "exec":     "npm run build-dev",
+    "ext":      "*",
+    "ignore":   ["__template/**/*", "node_modules/**/*", "dist/**/*"]
+}

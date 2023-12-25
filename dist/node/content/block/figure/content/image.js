@@ -9,7 +9,7 @@ class ImageFigureContent extends block_1.FigureContent {
     type = global_1.FigureType.Image;
     src;
     size;
-    invertible;
+    invert;
     static async setupContent(raw, context, helper) {
         try {
             if (!raw.src)
@@ -24,7 +24,8 @@ class ImageFigureContent extends block_1.FigureContent {
             let image = new ImageFigureContent;
             image.src = imgLocation;
             image.size = new util_1.Size(size.width, size.height);
-            image.invertible = !!raw.invertible;
+            if (typeof raw.invert === 'string')
+                image.invert = raw.invert;
             return image;
         }
         catch (e) {
@@ -42,13 +43,13 @@ class ImageVFigureContent extends view_1.VFigureContent {
     type = global_1.FigureType.Image;
     src;
     size;
-    invertible;
+    invert;
     static async setupContent(content, context, helper) {
         try {
             let view = new ImageVFigureContent;
             view.src = await helper.getAssetSrc(content.src);
             view.size = content.size;
-            view.invertible = content.invertible;
+            view.invert = content.invert;
             return view;
         }
         catch (e) {

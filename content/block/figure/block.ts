@@ -17,6 +17,7 @@ export class FigureCaption
     main:       Inliner[];
     secondary:  Inliner[];
     link:       string;
+    maxWidth:   string;
 }
 
 export abstract class FigureContent

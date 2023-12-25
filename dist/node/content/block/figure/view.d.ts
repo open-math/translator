@@ -10,6 +10,7 @@ export declare class VFigureCaption {
     main: string;
     secondary: string;
     link: string;
+    maxWidth: string;
 }
 export declare abstract class VFigureContent {
     abstract type: FigureType;

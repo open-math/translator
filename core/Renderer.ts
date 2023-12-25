@@ -169,7 +169,7 @@ export class RenderExtra
         text = text.replace(/\*\*(.+?)\*\*/gm, `<strong>$1</strong>`);
         text = text.replace(/\*(.+?)\*/gm, `<em>$1</em>`);
 
-        text = text.replace(/(^| )-- /gm, '$1— ');
+        text = text.replace(/ -- /gm, ' — ');
 
         {
             //let quoteOpen = true;

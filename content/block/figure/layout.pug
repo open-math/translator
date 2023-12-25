@@ -8,9 +8,9 @@ mixin figureContent(content)
                 data-pswp-single="",
                 target="_blank"
             )
-                img(src= content.src, loading="lazy", data-invertible= content.invertible)
+                img(src= content.src, loading="lazy", data-invert= content.invert)
         when 'video'
-            video(src= content.src, preload="metadata", loop="", muted="", controls="")
+            video(src= content.src, preload="metadata", loop="", muted="", controls="", data-invert= content.invert)
 
 mixin figureCaption(caption)
     figcaption(class= { centered: caption.centered })
@@ -23,7 +23,8 @@ mixin figureCaption(caption)
             .secondary!= caption.secondary
 
 figure(data-type= content.type, data-uuid= uuid, id= id, class= classes)
-    +figureContent(content)
+    .figureContent
+        +figureContent(content)
     if (caption)
         +figureCaption(caption)
 

@@ -10,7 +10,7 @@ export class ImageFigureContent extends FigureContent
     type =      FigureType.Image;
     src:        Location;
     size:       Size;
-    invertible: boolean;
+    invert:     string;
 
     static async setupContent(raw: any, context: Location, helper: Helper): Promise<ImageFigureContent>
     {
@@ -32,7 +32,9 @@ export class ImageFigureContent extends FigureContent
             let image = new ImageFigureContent;
                 image.src =         imgLocation;
                 image.size =        new Size(size.width, size.height);
-                image.invertible =  !!raw.invertible;
+            
+            if (typeof raw.invert === 'string')
+                image.invert = raw.invert;
 
             return image;
         }
@@ -55,7 +57,7 @@ export class ImageVFigureContent extends VFigureContent
     type =      FigureType.Image;
     src:        string;
     size:       Size;
-    invertible: boolean;
+    invert?:    string;
 
     static async setupContent(content: ImageFigureContent, context: Location, helper: Helper): Promise<ImageVFigureContent>
     {
@@ -64,7 +66,7 @@ export class ImageVFigureContent extends VFigureContent
             let view = new ImageVFigureContent;
                 view.src =          await helper.getAssetSrc(content.src);
                 view.size =         content.size;
-                view.invertible =   content.invertible;
+                view.invert =       content.invert;
 
             return view;
         }

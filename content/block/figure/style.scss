@@ -4,9 +4,19 @@
 
 [data-content] figure
 {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
+    &,
+    > .figureContent
+    {
+        max-width: 100%;
+    }
+
+    &,
+    > .figureContent,
+    > figcaption
+    {
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     figcaption
     {
@@ -65,13 +75,25 @@
 // Image + Video
 //
 
-[data-content] figure
+[data-content] figure > .figureContent,
+.pswp
 {
     img,
     video
     {
         display: block;
         max-width: 100%;
+        @include util.transition(filter);
+
+        &[data-invert="light"]
+        {
+            @include color.themeLight { filter: hue-rotate(180deg) invert(100%); }
+        }
+
+        &[data-invert="dark"]
+        {
+            @include color.themeDark { filter: hue-rotate(180deg) invert(100%); }
+        }
     }
 }
 
@@ -146,37 +168,20 @@
         --pswp-icon-color: #4f4f4f;
         --pswp-icon-color-secondary: white;
     }
-
-    @include color.themeDark
-    {
-        img[data-invertible]
-        {
-            filter: hue-rotate(180deg) invert(100%);
-        }
-    }
 }
 
-[data-content] figure[data-type="image"]
+[data-content] figure[data-type="image"] > .figureContent
 {
     img
-    {
-        @include util.transition(filter);
-
-        &[data-invertible]
-        {
-            @include color.themeDark
-            {
-                filter: hue-rotate(180deg) invert(100%);
-            }
-        }
-    }
+    {}
 }
 
 //
 // Video
 //
 
-[data-content] figure[data-type="video"]
+[data-content] figure[data-type="video"] > .figureContent
 {
-    // TODO: Make invertible videos???
+    video
+    {}
 }

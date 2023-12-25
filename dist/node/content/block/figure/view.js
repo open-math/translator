@@ -16,6 +16,7 @@ class VFigureCaption {
     main;
     secondary;
     link;
+    maxWidth;
 }
 exports.VFigureCaption = VFigureCaption;
 class VFigureContent {

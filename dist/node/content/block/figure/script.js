@@ -25,9 +25,9 @@ function initPhotoSwipeIn(imgElement) {
         ...(globalThis.PhotoSwipeLang ?? {})
     });
     lightbox.on('contentAppend', function (e) {
-        let isInvertible = lightbox.pswp.currSlide.data.element.querySelector('img').hasAttribute('data-invertible');
-        if (isInvertible)
-            e.content.element.setAttribute('data-invertible', '');
+        let invert = lightbox.pswp.currSlide.data.element.querySelector('img').getAttribute('data-invert');
+        if (invert)
+            e.content.element.setAttribute('data-invert', invert);
     });
     let plugin = new PhotoSwipeDynamicCaption(lightbox, {
         type: 'below',
