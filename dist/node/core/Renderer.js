@@ -123,7 +123,7 @@ class RenderExtra {
     static afterStyle(text, quoteTracker) {
         text = text.replace(/\*\*(.+?)\*\*/gm, `<strong>$1</strong>`);
         text = text.replace(/\*(.+?)\*/gm, `<em>$1</em>`);
-        text = text.replace(/ -- /gm, ' — ');
+        text = text.replace(/(^| )-- /gm, '$1— ');
         {
             //let quoteOpen = true;
             text = text.replace(/"/gm, () => (quoteTracker.open = !quoteTracker.open) ? '»' : '«');
