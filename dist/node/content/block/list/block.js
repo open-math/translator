@@ -4,7 +4,7 @@ const bitran_1 = require("bitran");
 class List extends bitran_1.Block {
     type = 'list';
     listType;
-    olStart;
+    start;
     items;
 }
 exports.default = List;

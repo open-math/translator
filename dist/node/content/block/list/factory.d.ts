@@ -5,7 +5,7 @@ import { VList } from "./view";
 export declare class FList extends BlockFactory<List> {
     canParse(strBlock: string): boolean;
     isUl(str: string): boolean;
-    isOl(str: string): string;
+    getOlStart(str: string): number;
     parse(strBlock: string, meta: BlockMeta): Promise<List>;
 }
 export declare class FBlockList extends ObjBlockFactory<List> {

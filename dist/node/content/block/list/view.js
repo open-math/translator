@@ -7,7 +7,7 @@ exports.VList = void 0;
 const BlockView_1 = __importDefault(require("../../../core/block/BlockView"));
 class VList extends BlockView_1.default {
     listType;
-    olStart;
+    start;
     items;
 }
 exports.VList = VList;

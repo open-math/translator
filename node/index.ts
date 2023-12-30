@@ -7,5 +7,5 @@ export function copyAssetsTo(targetPath: string)
         localPath = localPath.slice(0, -4);
         localPath = localPath.join(path.sep) as any;
 
-    fs.cpSync(localPath + '/content', path.normalize(targetPath), { recursive: true });
+    fs.cpSync(localPath + '/dist/content', path.normalize(targetPath), { recursive: true });
 }

@@ -10,6 +10,6 @@ function copyAssetsTo(targetPath) {
     let localPath = require.resolve('./').split(path_1.default.sep);
     localPath = localPath.slice(0, -4);
     localPath = localPath.join(path_1.default.sep);
-    fs_1.default.cpSync(localPath + '/content', path_1.default.normalize(targetPath), { recursive: true });
+    fs_1.default.cpSync(localPath + '/dist/content', path_1.default.normalize(targetPath), { recursive: true });
 }
 exports.copyAssetsTo = copyAssetsTo;

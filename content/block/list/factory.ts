@@ -7,7 +7,7 @@ export class FList extends BlockFactory<List>
 {
     canParse(strBlock: string)
     {
-        return (this.isUl(strBlock) || this.isOl(strBlock)) !== null
+        return (this.isUl(strBlock) || this.getOlStart(strBlock)) !== null
     }
 
     isUl(str: string)
@@ -15,17 +15,15 @@ export class FList extends BlockFactory<List>
         return str.startsWith('* ');
     }
 
-    isOl(str: string)
+    getOlStart(str: string)
     {
         let match = str.match(/^(\d+)\. /);
 
         if (match)
-            return match[1];
+            return +match[1];
 
         return null;
     }
-    
-    //
 
     async parse(strBlock: string, meta: BlockMeta)
     {
@@ -34,15 +32,15 @@ export class FList extends BlockFactory<List>
             list.items = [];
 
         if (list.listType === 'ol')
-            list.olStart = +this.isOl(strBlock);
+            list.start = this.getOlStart(strBlock);
 
         let lines = strBlock.split('\n').map(line => line.trim());
 
         for (let i = 0; i < lines.length; i++)
         {
             let line = lines[i];
-            let start = list.listType === 'ul' ? 2 : this.isOl(line).length + 2;
-            let inliners = await this.parser.parseInliners(line.slice(start));
+            let inliners = await this.parser.parseInliners(line.replace((list.listType === 'ol') ? /^\d+\./ : /^\* /, ''));
+
             let paragraph = new Paragraph;
                 paragraph.content = inliners;
 
@@ -60,14 +58,14 @@ export class FBlockList extends ObjBlockFactory<List>
     async parseObj(obj: any, meta: BlockMeta)
     {
         let list = new List;
-        list.listType = ['ul', 'ol'].includes(obj.listType) ? obj.listType : 'ul';
+        list.listType = ['ul', 'ol'].includes(obj.type) ? obj.type : 'ul';
 
         if (list.listType === 'ol')
         {
             let start = Math.floor(obj.start);
                 start = isNaN(start) ? 1 : start;
 
-            list.olStart = start;
+            list.start = start;
         }
 
         if (!Array.isArray(obj.items) || obj.items.length === 0)
@@ -85,7 +83,7 @@ export class VFList extends BlockViewFactory<VList, List>
     {
         let view = new VList;
         view.listType = block.listType;
-        view.olStart = block.olStart;
+        view.start = block.start;
         view.items = [];
 
         for (let i = 0; i < block.items.length; i++)

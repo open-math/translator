@@ -1,4 +1,4 @@
-#{listType}(id= id, class= classes, start= (listType === 'ol') ? olStart : null)
+#{listType}(id= id, class= classes, style= (start !== 1) ? 'counter-set: ol-counter ' + (start - 1) : null)
     each item in items
         li
             .liContent!= item
