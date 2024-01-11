@@ -1,4 +1,5 @@
 @use 'def/color';
+@use 'def/size';
 @use 'def/bp';
 @use 'include/util';
 
@@ -20,8 +21,11 @@
 
     figcaption
     {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
         text-align: center;
-        margin-top: 7.5px;
+        margin-top: size.$gap;
         color: var(--c_text-muted);
 
         .mathInline
@@ -31,6 +35,8 @@
 
         .main
         {
+            line-height: 1.1rem;
+
             > a
             {
                 font-size: .8em;
@@ -65,7 +71,7 @@
             .main > a,
             .secondary
             {
-                font-size: .735em;
+                font-size: .75em;
             }
         }
     }
