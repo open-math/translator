@@ -14,7 +14,7 @@ mixin task(task, isSimilar)
                 i.ic-clone.analogIcon
 
             .info
-                .title!= task.title
+                h2.title!= task.title
                 
                 if (isSimilar)
                     .desc= i18n('task.similarNum') + ' ' + task.num

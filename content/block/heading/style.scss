@@ -1,7 +1,7 @@
 @use 'def/size';
 @use 'include/util';
 
-[data-content]
+[data-content] >, [data-content] .task section
 {
     h1, h2, h3
     {
