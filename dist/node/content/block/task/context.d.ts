@@ -1,3 +1,4 @@
+import * as math from "mathjs";
 declare function getRandomInt(min: number, max: number): number;
 declare function getRandomArray(length: number, valueFn: (index: number) => any): any[];
 declare function getRandomFromArray(arr: any[]): any;
@@ -5,6 +6,7 @@ declare function getRandomCutFromArray(arr: any[], cutLength: number): any[];
 declare function pluralize(count: number, ...words: string[]): string;
 declare function pluralizeFull(count: number, ...words: string[]): string;
 export declare function getFunctionContext(): {
+    math: typeof math;
     pluralize: typeof pluralize;
     pluralizeFull: typeof pluralizeFull;
     random: {

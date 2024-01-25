@@ -1,3 +1,5 @@
+import * as math from "mathjs";
+
 function getRandomInt(min: number, max: number)
 {
     min = Math.ceil(min);
@@ -71,6 +73,7 @@ function pluralizeFull(count: number, ...words: string[])
 export function getFunctionContext()
 {
     return {
+        math,
         pluralize,
         pluralizeFull,
         random:
