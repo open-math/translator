@@ -1,41 +1,44 @@
 @use 'def/size';
 @use 'include/util';
 
-[data-content] >, [data-content] .task section
+[data-content]
 {
     h1, h2, h3
     {
         text-align: left;
     }
-    
+
     h2, h3
     {
-        font-weight: 600;
-    
-        &:hover > .hAnchor { opacity: 1; }
-    
-        > .hAnchor
+        &:not(.noStyle)
         {
-            margin-left: size.$gapSmall;
-            color: var(--c_text-dimmed);
-            font-size: 70%;
-            text-decoration: none;
-
-            opacity: 0;
-            @include util.transition(opacity, color);
+            font-weight: 600;
     
-            &:hover { color: var(--c_text-muted); }
+            &:hover > .hAnchor { opacity: 1; }
+        
+            > .hAnchor
+            {
+                margin-left: size.$gapSmall;
+                color: var(--c_text-dimmed);
+                font-size: 70%;
+                text-decoration: none;
+    
+                opacity: 0;
+                @include util.transition(opacity, color);
+        
+                &:hover { color: var(--c_text-muted); }
+            }
         }
     }
     
-    h2
+    h2:not(.noStyle)
     {
         font-size: 1.3em;
         padding-bottom: size.$gapSmall;
         border-bottom: 1px solid var(--c_border);
     }
     
-    h3
+    h3:not(.noStyle)
     {
         font-size: 1.1em;
     }

@@ -24,7 +24,7 @@ pug_html = pug_html + "\u003Ci class=\"ic-clone analogIcon\"\u003E\u003C\u002Fi\
 ;pug_debug_line = 16;pug_debug_filename = "content\\block\\task\\layout.pug";
 pug_html = pug_html + "\u003Cdiv class=\"info\"\u003E";
 ;pug_debug_line = 17;pug_debug_filename = "content\\block\\task\\layout.pug";
-pug_html = pug_html + "\u003Ch2 class=\"title\"\u003E";
+pug_html = pug_html + "\u003Ch2 class=\"noStyle title\"\u003E";
 ;pug_debug_line = 17;pug_debug_filename = "content\\block\\task\\layout.pug";
 pug_html = pug_html + (null == (pug_interp = task.title) ? "" : pug_interp) + "\u003C\u002Fh2\u003E";
 ;pug_debug_line = 19;pug_debug_filename = "content\\block\\task\\layout.pug";
