@@ -32,7 +32,7 @@ export class VFIMath extends InlinerViewFactory<VMath, IMath>
         if (product.strMode)
         {
             math['strMode'] = true;
-            math['mord'] = /^[a-z ]+$/gm.test(product.content);
+            math['mord'] = /^[a-zA-Zа-яА-Я ,]+$/gm.test(product.content);
             math.html = product.content;
         }
         else

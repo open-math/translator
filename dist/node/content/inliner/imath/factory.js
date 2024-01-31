@@ -26,7 +26,7 @@ class VFIMath extends viewFactory_1.InlinerViewFactory {
         let math = new view_1.VMath;
         if (product.strMode) {
             math['strMode'] = true;
-            math['mord'] = /^[a-z ]+$/gm.test(product.content);
+            math['mord'] = /^[a-zA-Zа-яА-Я ,]+$/gm.test(product.content);
             math.html = product.content;
         }
         else
