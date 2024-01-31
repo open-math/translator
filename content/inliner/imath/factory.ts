@@ -13,9 +13,10 @@ export class FIMath extends InlinerFactory<IMath>
 
     async parse(match: RegExpExecArray): Promise<IMath>
     {
+        let content = match[1];
+
         let imath = new IMath;
-            imath.content = match[1];
-            imath.strMode = !/\\|\^|{|}/gm.test(imath.content);
+            imath.content = content;
 
         return imath;
     }
@@ -29,10 +30,18 @@ export class VFIMath extends InlinerViewFactory<VMath, IMath>
 
         let math = new VMath;
 
-        if (product.strMode)
+        let strMode =           !/[\^\\\{\}]/gm.test(product.content);
+        let mord =              /^[a-zA-Zа-яА-Я ,]+$/gm.test(product.content);
+        let containsLetters =   /[a-zA-Zа-яА-Я]/gm.test(product.content);
+
+        if (
+            mord
+            ||
+            (strMode && !containsLetters)
+        )
         {
             math['strMode'] = true;
-            math['mord'] = /^[a-zA-Zа-яА-Я ,]+$/gm.test(product.content);
+            math['mord'] = mord;
             math.html = product.content;
         }
         else

@@ -13,9 +13,9 @@ const Helper_1 = __importDefault(require("../../../core/Helper"));
 class FIMath extends bitran_1.InlinerFactory {
     regexp = /(?<!\\)\$(.+?)(?<!\\)\$/gm;
     async parse(match) {
+        let content = match[1];
         let imath = new inliner_1.default;
-        imath.content = match[1];
-        imath.strMode = !/\\|\^|{|}/gm.test(imath.content);
+        imath.content = content;
         return imath;
     }
 }
@@ -24,9 +24,14 @@ class VFIMath extends viewFactory_1.InlinerViewFactory {
     async setupView(product) {
         let helper = Helper_1.default.getFrom(this.renderer);
         let math = new view_1.VMath;
-        if (product.strMode) {
+        let strMode = !/[\^\\\{\}]/gm.test(product.content);
+        let mord = /^[a-zA-Zа-яА-Я ,]+$/gm.test(product.content);
+        let containsLetters = /[a-zA-Zа-яА-Я]/gm.test(product.content);
+        if (mord
+            ||
+                (strMode && !containsLetters)) {
             math['strMode'] = true;
-            math['mord'] = /^[a-zA-Zа-яА-Я ,]+$/gm.test(product.content);
+            math['mord'] = mord;
             math.html = product.content;
         }
         else
