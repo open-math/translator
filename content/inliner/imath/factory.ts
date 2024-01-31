@@ -15,6 +15,7 @@ export class FIMath extends InlinerFactory<IMath>
     {
         let imath = new IMath;
             imath.content = match[1];
+            imath.strMode = !/\\|\^|{|}/gm.test(imath.content);
 
         return imath;
     }
@@ -27,6 +28,14 @@ export class VFIMath extends InlinerViewFactory<VMath, IMath>
         let helper = Helper.getFrom(this.renderer);
 
         let math = new VMath;
+
+        if (product.strMode)
+        {
+            math['strMode'] = true;
+            math['mord'] = /^[a-z ]+$/gm.test(product.content);
+            math.html = product.content;
+        }
+        else
             math.html = katex.renderToString(product.content, { displayMode: false, strict: false, macros: {...require('../../block/math/macros'), ...helper.getMathMacros()}});
 
         return math;

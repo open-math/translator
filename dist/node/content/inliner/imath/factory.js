@@ -15,6 +15,7 @@ class FIMath extends bitran_1.InlinerFactory {
     async parse(match) {
         let imath = new inliner_1.default;
         imath.content = match[1];
+        imath.strMode = !/\\|\^|{|}/gm.test(imath.content);
         return imath;
     }
 }
@@ -23,7 +24,13 @@ class VFIMath extends viewFactory_1.InlinerViewFactory {
     async setupView(product) {
         let helper = Helper_1.default.getFrom(this.renderer);
         let math = new view_1.VMath;
-        math.html = katex_1.default.renderToString(product.content, { displayMode: false, strict: false, macros: { ...require('../../block/math/macros'), ...helper.getMathMacros() } });
+        if (product.strMode) {
+            math['strMode'] = true;
+            math['mord'] = /^[a-z ]+$/gm.test(product.content);
+            math.html = product.content;
+        }
+        else
+            math.html = katex_1.default.renderToString(product.content, { displayMode: false, strict: false, macros: { ...require('../../block/math/macros'), ...helper.getMathMacros() } });
         return math;
     }
     getRender(view) {

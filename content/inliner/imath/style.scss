@@ -17,4 +17,17 @@
             }
         }
     }
+
+    .mathInline.strMode
+    {
+        font: normal 1.15em KaTeX_Main, Times New Roman, serif;
+        line-height: 1.2;
+        text-indent: 0;
+
+        &.mord
+        {
+            font-family: KaTeX_Math;
+            font-style: italic;
+        }
+    }
 }
