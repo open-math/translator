@@ -3,7 +3,8 @@ declare const _default: {
     "\\floor": string;
     "\\andcases": string;
     "\\orcases": string;
-    "\\cBrand": string;
-    "\\cRed": string;
+    "\\red": string;
+    "\\green": string;
+    "\\blue": string;
 };
 export default _default;

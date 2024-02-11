@@ -9,6 +9,7 @@ exports.default = {
     "\\andcases": "\\begin{cases}#1\\end{cases}",
     "\\orcases": "\\left[\\begin{array}{ll} #1 \\end{array}\\right.",
     // Цвета
-    "\\cBrand": "#0f82ff",
-    "\\cRed": "#d74b4b",
+    "\\red": "\\textcolor{##100000}{#1}",
+    "\\green": "\\textcolor{##200000}{#1}",
+    "\\blue": "\\textcolor{##300000}{#1}",
 };

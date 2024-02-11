@@ -1,5 +1,8 @@
 @use 'def/size';
+@use 'def/color';
+@use 'def/bp';
 @use 'include/scroll';
+@use "sass:string";
 
 [data-content]
 {
@@ -19,10 +22,54 @@
         overflow-x: auto;
 
         @extend %scrollbar;
+
+        &::-webkit-scrollbar
+        {
+            height: 7px;
+
+            @include bp.max(mini)
+            {
+                height: 5px;
+            }
+        }
+
+        &::-webkit-scrollbar-thumb
+        {
+            border-radius: size.$borderRadius;
+        }
     }
 
     .katex > .katex-html
     {
         white-space: normal;
+    }
+
+    //
+    //
+    //
+
+    $katexColorMap: (
+        100000:     red,
+        200000:     green,
+        300000:     blue,
+    );
+
+    @each $katexCode, $cssVarCode in $katexColorMap
+    {
+        .katex [style*=#{("\"#" + $katexCode + "\"")}] { color: var(--kc_#{$cssVarCode}) !important; }
+    }
+
+    .katex
+    {
+        --kc_blue:   #0f82ff;
+        --kc_red:    #d73737;
+        --kc_green:  #59ae1c;
+
+        @include color.themeDark
+        {
+            --kc_blue:  #4aa0df;
+            --kc_red:   #fc6255;
+            --kc_green: #83c167;
+        }
     }
 }
