@@ -13,6 +13,7 @@ import array from './__template/array';
 import table from './__template/table';
 import task from './__template/task';
 import secondary from './__template/secondary';
+import mermaid from "./__template/mermaid";
 import todo from './__template/todo';
 
 let templates =
@@ -32,6 +33,7 @@ let templates =
     table,
     task,
     secondary,
+    mermaid,
     todo
 }
 

@@ -26,9 +26,10 @@ const factory_12 = require("../content/block/task/factory");
 const factory_13 = require("../content/block/todo/factory");
 const factory_14 = require("../content/block/figure/factory");
 const factory_15 = require("../content/block/secondary/factory");
+const factory_16 = require("../content/block/mermaid/factory");
 // Inline Factories
-const factory_16 = require("../content/inliner/imath/factory");
-const factory_17 = require("../content/inliner/link/factory");
+const factory_17 = require("../content/inliner/imath/factory");
+const factory_18 = require("../content/inliner/link/factory");
 class Parser {
     location;
     helper;
@@ -52,11 +53,12 @@ class Parser {
         factory_4.FExample,
         factory_4.FDefinition,
         factory_4.FThreorem,
+        factory_16.FMermaid,
         factory_13.FTodo,
     ];
     inlinerFactories = [
-        factory_16.FIMath,
-        factory_17.FLink,
+        factory_17.FIMath,
+        factory_18.FLink,
     ];
     constructor(location, helper) {
         this.location = location;

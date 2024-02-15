@@ -1,13 +1,16 @@
 import { init as figure } from "content/block/figure/script";
 import { init as accentBlock } from "content/block/accentBlock/script";
 import { init as gallery } from "content/block/gallery/script";
+import { init as mermaid } from "content/block/mermaid/script";
 import { init as link } from "content/inliner/link/script";
 import { GenTaskManager, init as task } from "content/block/task/script";
+
 
 let products = [
     figure,
     accentBlock,
     gallery,
+    mermaid,
     link,
     task,
 ];

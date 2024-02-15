@@ -24,6 +24,7 @@ import { VFTodo } from "content/block/todo/factory";
 import { VFFigure } from "content/block/figure/factory";
 import { VFGallery } from "content/block/gallery/factory";
 import { VFSecondary } from "content/block/secondary/factory";
+import { VFMermaid } from "content/block/mermaid/factory";
 
 // Inliner Factories
 import { VFText } from "content/inliner/text/factory";
@@ -69,6 +70,8 @@ export default class Renderer
         example:    VFAccentBlock,
         definition: VFAccentBlock,
         theorem:    VFAccentBlock,
+
+        mermaid:    VFMermaid,
 
         todo:       VFTodo,
     };

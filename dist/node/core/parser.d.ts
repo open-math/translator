@@ -15,12 +15,13 @@ import { FHtml } from "../content/block/html/factory";
 import { FArray } from "../content/block/array/factory";
 import { FTask } from "../content/block/task/factory";
 import { FImage } from "../content/block/figure/factory";
+import { FMermaid } from "../content/block/mermaid/factory";
 import { FIMath } from "../content/inliner/imath/factory";
 import { FLink } from "../content/inliner/link/factory";
 export default class Parser {
     location: Location;
     helper: Helper;
-    blockFactories: (typeof FMath | typeof FHeading | typeof FHr | typeof FInclude | typeof FList | typeof FHtml | typeof FArray | typeof FTask | typeof FSpoiler | typeof FGallery | typeof FImage | typeof FImportant)[];
+    blockFactories: (typeof FMath | typeof FHeading | typeof FHr | typeof FInclude | typeof FList | typeof FHtml | typeof FArray | typeof FTask | typeof FSpoiler | typeof FGallery | typeof FImage | typeof FMermaid | typeof FImportant)[];
     inlinerFactories: (typeof FIMath | typeof FLink)[];
     constructor(location: Location, helper: Helper);
     filterParseWorkers(parseWorkers: ParseWorker[]): ParseWorker[];

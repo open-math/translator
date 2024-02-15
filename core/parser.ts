@@ -29,6 +29,7 @@ import { FTask } from "content/block/task/factory";
 import { FTodo } from "content/block/todo/factory";
 import { FImage, FVideo } from "content/block/figure/factory";
 import { FSecondary } from "content/block/secondary/factory";
+import { FMermaid } from "content/block/mermaid/factory";
 
 // Inline Factories
 import { FIMath } from "content/inliner/imath/factory";
@@ -62,6 +63,8 @@ export default class Parser
         FExample,
         FDefinition,
         FThreorem,
+
+        FMermaid,
 
         FTodo,
     ];

@@ -19,6 +19,7 @@ const array_1 = __importDefault(require("./__template/array"));
 const table_1 = __importDefault(require("./__template/table"));
 const task_1 = __importDefault(require("./__template/task"));
 const secondary_1 = __importDefault(require("./__template/secondary"));
+const mermaid_1 = __importDefault(require("./__template/mermaid"));
 const todo_1 = __importDefault(require("./__template/todo"));
 let templates = {
     errorBlock: errorBlock_1.default,
@@ -36,6 +37,7 @@ let templates = {
     table: table_1.default,
     task: task_1.default,
     secondary: secondary_1.default,
+    mermaid: mermaid_1.default,
     todo: todo_1.default
 };
 function renderTemplate(name, locals = {}) {
