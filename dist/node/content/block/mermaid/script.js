@@ -3,12 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = void 0;
 const themes_1 = require("./themes");
 let Mermaid = null;
+let obs = null;
 //
 function getTheme() {
     let strTheme = (document.documentElement.getAttribute('data-theme'))?.split('-').pop() ?? 'light';
     return strTheme === 'light' ? themes_1.lightTheme : themes_1.darkTheme;
 }
 async function init(contentElem) {
+    obs?.disconnect();
+    obs = null;
+    Mermaid = null;
     Mermaid = (await MermaidPromise).default;
     await new Promise(resolve => setTimeout(resolve, 10));
     const mermaidElements = contentElem.querySelectorAll('.mermaid');
@@ -16,7 +20,7 @@ async function init(contentElem) {
         await renderDiagElem(mermaidElem);
         registerDiagClick(mermaidElem);
     }
-    let obs = new MutationObserver(() => {
+    obs = new MutationObserver(() => {
         for (const mermaidElem of mermaidElements) {
             setTimeout(async () => {
                 await renderDiagElem(mermaidElem);
@@ -27,20 +31,9 @@ async function init(contentElem) {
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'], });
 }
 exports.init = init;
-async function renderDiag(id, rawDiag, theme) {
-    Mermaid.initialize({
-        startOnLoad: false,
-        theme: 'base',
-        ...theme,
-    });
-    let element = document.createElement('div');
-    const { svg } = await Mermaid.render(id, rawDiag, element);
-    return svg.innerHTML;
-}
 async function renderDiagElem(diagElem) {
     const pre = diagElem.querySelector('pre');
     const rawDiag = pre.innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
-    Mermaid.setParseErrorHandler(() => { });
     Mermaid.initialize({
         startOnLoad: false,
         theme: 'base',
@@ -55,8 +48,8 @@ async function renderDiagElem(diagElem) {
         console.error(e);
         renderResult = '<b style="color: red">Error when generating mermaid chart!</b>';
     }
-    diagElem.querySelector('svg')?.remove();
     diagElem.querySelector('.loading')?.remove();
+    diagElem.querySelector('svg')?.remove();
     diagElem.insertAdjacentHTML('beforeend', renderResult);
 }
 function registerDiagClick(diagElem) {

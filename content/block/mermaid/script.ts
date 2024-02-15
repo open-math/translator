@@ -3,6 +3,7 @@ import { lightTheme, darkTheme } from "./themes";
 declare let PhotoSwipe, PhotoSwipeLightbox, MermaidPromise;
 
 let Mermaid = null;
+let obs: MutationObserver = null;
 
 //
 
@@ -14,6 +15,10 @@ function getTheme()
 
 export async function init(contentElem: HTMLElement)
 {
+    obs?.disconnect();
+    obs = null;
+
+    Mermaid = null;
     Mermaid = (await MermaidPromise).default;
 
     await new Promise(resolve => setTimeout(resolve, 10));
@@ -26,7 +31,7 @@ export async function init(contentElem: HTMLElement)
         registerDiagClick(mermaidElem);
     }
 
-    let obs = new MutationObserver(() => {
+    obs = new MutationObserver(() => {
         for (const mermaidElem of mermaidElements)
         {
             setTimeout(async () => {
@@ -39,27 +44,10 @@ export async function init(contentElem: HTMLElement)
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'], });
 }
 
-async function renderDiag(id: string, rawDiag: string, theme)
-{
-    Mermaid.initialize({
-        startOnLoad: false,
-        theme: 'base',
-        ...theme,
-    });
-
-    let element = document.createElement('div');
-
-    const { svg } = await Mermaid.render(id, rawDiag, element);
-
-    return svg.innerHTML;
-}
-
 async function renderDiagElem(diagElem: HTMLElement)
 {
     const pre = diagElem.querySelector('pre');
     const rawDiag = pre.innerHTML.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
-
-    Mermaid.setParseErrorHandler(() => {});
 
     Mermaid.initialize({
         startOnLoad: false,
@@ -78,8 +66,8 @@ async function renderDiagElem(diagElem: HTMLElement)
         renderResult = '<b style="color: red">Error when generating mermaid chart!</b>';
     }
 
-    diagElem.querySelector('svg')?.remove();
     diagElem.querySelector('.loading')?.remove();
+    diagElem.querySelector('svg')?.remove();
     diagElem.insertAdjacentHTML('beforeend', renderResult);
 }
 
