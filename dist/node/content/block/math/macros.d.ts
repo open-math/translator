@@ -6,5 +6,6 @@ declare const _default: {
     "\\red": string;
     "\\green": string;
     "\\blue": string;
+    "\\yellow": string;
 };
 export default _default;

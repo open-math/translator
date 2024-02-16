@@ -12,4 +12,5 @@ exports.default = {
     "\\red": "\\textcolor{##100000}{#1}",
     "\\green": "\\textcolor{##200000}{#1}",
     "\\blue": "\\textcolor{##300000}{#1}",
+    "\\yellow": "\\textcolor{##400000}{#1}",
 };

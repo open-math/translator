@@ -14,6 +14,7 @@ async function init(contentElem) {
     obs = null;
     Mermaid = null;
     Mermaid = (await MermaidPromise).default;
+    Mermaid.initialize({ startOnLoad: false });
     await new Promise(resolve => setTimeout(resolve, 10));
     const mermaidElements = contentElem.querySelectorAll('.mermaid');
     for (const mermaidElem of mermaidElements) {

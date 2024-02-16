@@ -52,6 +52,7 @@
         100000:     red,
         200000:     green,
         300000:     blue,
+        400000:     yellow,
     );
 
     @each $katexCode, $cssVarCode in $katexColorMap
@@ -64,12 +65,14 @@
         --kc_blue:   #0f82ff;
         --kc_red:    #d73737;
         --kc_green:  #59ae1c;
+        --kc_yellow: #c99029;
 
         @include color.themeDark
         {
             --kc_blue:  #4aa0df;
             --kc_red:   #fc6255;
             --kc_green: #83c167;
+            --kc_yellow:#c1a267;
         }
     }
 }

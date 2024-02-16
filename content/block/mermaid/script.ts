@@ -20,6 +20,7 @@ export async function init(contentElem: HTMLElement)
 
     Mermaid = null;
     Mermaid = (await MermaidPromise).default;
+    Mermaid.initialize({ startOnLoad: false });
 
     await new Promise(resolve => setTimeout(resolve, 10));
 
