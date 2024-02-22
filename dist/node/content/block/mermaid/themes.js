@@ -22,6 +22,11 @@ exports.lightTheme = {
                 color: white;
             }
 
+            .nodeLabel span
+            {
+                color: white;
+            }
+
             rect { 
                 fill: #4672c4;
             }
@@ -47,6 +52,11 @@ exports.darkTheme = {
             {
                 font-size: 18px;
                 font-weight: 600;
+                color: white;
+            }
+
+            .nodeLabel span
+            {
                 color: white;
             }
 

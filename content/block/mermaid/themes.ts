@@ -19,6 +19,11 @@ export const lightTheme = {
                 color: white;
             }
 
+            .nodeLabel span
+            {
+                color: white;
+            }
+
             rect { 
                 fill: #4672c4;
             }
@@ -45,6 +50,11 @@ export const darkTheme = {
             {
                 font-size: 18px;
                 font-weight: 600;
+                color: white;
+            }
+
+            .nodeLabel span
+            {
                 color: white;
             }
 

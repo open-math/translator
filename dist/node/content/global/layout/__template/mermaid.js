@@ -12,7 +12,7 @@ pug_html = pug_html + "\u003Cpre style=\"display:none\"\u003E";
 ;pug_debug_line = 2;pug_debug_filename = "content\\block\\mermaid\\layout.pug";
 pug_html = pug_html + (null == (pug_interp = content) ? "" : pug_interp) + "\u003C\u002Fpre\u003E";
 ;pug_debug_line = 3;pug_debug_filename = "content\\block\\mermaid\\layout.pug";
-pug_html = pug_html + "\u003Cdiv class=\"loading\"\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"loading\" title=\"Загрузка диаграммы...\"\u003E";
 ;pug_debug_line = 4;pug_debug_filename = "content\\block\\mermaid\\layout.pug";
 pug_html = pug_html + "\u003Ci class=\"ic-sitemap\"\u003E\u003C\u002Fi\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
     }.call(this, "content" in locals_for_with ?
