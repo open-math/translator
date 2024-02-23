@@ -22,8 +22,6 @@ export async function init(contentElem: HTMLElement)
     Mermaid = (await MermaidPromise).default;
     Mermaid.initialize({ startOnLoad: false });
 
-    await new Promise(resolve => setTimeout(resolve, 10));
-
     const mermaidElements = contentElem.querySelectorAll('.mermaid') as any as HTMLElement[];
 
     for (const mermaidElem of mermaidElements)
