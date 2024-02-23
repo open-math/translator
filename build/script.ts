@@ -10,7 +10,7 @@ export function buildScripts()
         bundle:         true,
         minify:         !IS_DEV,
         sourcemap:      IS_DEV,
-        globalName:     'OMathContent'
+        globalName:     'OMathContent',
     });
 
     // Task Generator Worker
@@ -21,6 +21,6 @@ export function buildScripts()
         charset:        'utf8',
         bundle:         true,
         minify:         !IS_DEV,
-        sourcemap:      IS_DEV
+        sourcemap:      IS_DEV,
     });
 }

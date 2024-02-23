@@ -15,20 +15,21 @@ async function init(contentElem) {
     Mermaid = null;
     Mermaid = (await MermaidPromise).default;
     Mermaid.initialize({ startOnLoad: false });
+    await new Promise(resolve => setTimeout(resolve, 50));
     const mermaidElements = contentElem.querySelectorAll('.mermaid');
-    for (const mermaidElem of mermaidElements) {
-        await renderDiagElem(mermaidElem);
-        registerDiagClick(mermaidElem);
-    }
-    obs = new MutationObserver(() => {
+    function renderAll() {
         for (const mermaidElem of mermaidElements) {
             setTimeout(async () => {
                 await renderDiagElem(mermaidElem);
                 registerDiagClick(mermaidElem);
-            }, 1);
+            }, 20);
         }
+    }
+    obs = new MutationObserver(() => {
+        renderAll();
     });
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'], });
+    renderAll();
 }
 exports.init = init;
 async function renderDiagElem(diagElem) {

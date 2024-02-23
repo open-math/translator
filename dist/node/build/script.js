@@ -14,7 +14,7 @@ function buildScripts() {
         bundle: true,
         minify: !devMode_1.IS_DEV,
         sourcemap: devMode_1.IS_DEV,
-        globalName: 'OMathContent'
+        globalName: 'OMathContent',
     });
     // Task Generator Worker
     esbuild_1.default.buildSync({
@@ -23,7 +23,7 @@ function buildScripts() {
         charset: 'utf8',
         bundle: true,
         minify: !devMode_1.IS_DEV,
-        sourcemap: devMode_1.IS_DEV
+        sourcemap: devMode_1.IS_DEV,
     });
 }
 exports.buildScripts = buildScripts;

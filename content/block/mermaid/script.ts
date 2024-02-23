@@ -22,25 +22,27 @@ export async function init(contentElem: HTMLElement)
     Mermaid = (await MermaidPromise).default;
     Mermaid.initialize({ startOnLoad: false });
 
+    await new Promise(resolve => setTimeout(resolve, 50));
+
     const mermaidElements = contentElem.querySelectorAll('.mermaid') as any as HTMLElement[];
 
-    for (const mermaidElem of mermaidElements)
+    function renderAll()
     {
-        await renderDiagElem(mermaidElem);
-        registerDiagClick(mermaidElem);
-    }
-
-    obs = new MutationObserver(() => {
         for (const mermaidElem of mermaidElements)
         {
             setTimeout(async () => {
                 await renderDiagElem(mermaidElem);
                 registerDiagClick(mermaidElem);
-            }, 1);
+            }, 20);
         }
+    }
+
+    obs = new MutationObserver(() => {
+        renderAll();
     });
 
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'], });
+    renderAll();
 }
 
 async function renderDiagElem(diagElem: HTMLElement)
