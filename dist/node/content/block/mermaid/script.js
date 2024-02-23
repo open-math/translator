@@ -15,7 +15,7 @@ async function init(contentElem) {
     Mermaid = null;
     Mermaid = (await MermaidPromise).default;
     Mermaid.initialize({ startOnLoad: false });
-    await new Promise(resolve => setTimeout(resolve, 50));
+    await document.fonts.ready;
     const mermaidElements = contentElem.querySelectorAll('.mermaid');
     function renderAll() {
         for (const mermaidElem of mermaidElements) {
