@@ -1,8 +1,9 @@
+@use "sass:string";
+
 @use 'def/size';
 @use 'def/color';
 @use 'def/bp';
 @use 'include/scroll';
-@use "sass:string";
 
 [data-content]
 {
@@ -15,8 +16,14 @@
     
     .katex-display
     {
-        margin: -10px 0;
-        .base { margin: 15px 0; }
+        //margin: -10px 0;
+        //.base { margin: 15px 0; }
+
+        .katex-html .base
+        {
+            margin-bottom: 15px;
+            &:last-child { margin-bottom: 0; }
+        }
 
         overflow: hidden;
         overflow-x: auto;

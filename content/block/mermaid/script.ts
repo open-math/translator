@@ -23,6 +23,7 @@ export async function init(contentElem: HTMLElement)
     Mermaid.initialize({ startOnLoad: false });
 
     await document.fonts.ready;
+    await new Promise(resolve => setTimeout(resolve, 150));
 
     const mermaidElements = contentElem.querySelectorAll('.mermaid') as any as HTMLElement[];
 
