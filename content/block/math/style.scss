@@ -13,30 +13,37 @@
         border: 1px solid rgb(125, 0, 0);
         padding: size.$gap;
     }
+
+    .mathDisplay
+    {
+        margin-bottom: 0;
+    }
     
     .katex-display
     {
-        //margin: -10px 0;
-        //.base { margin: 15px 0; }
+        margin: 0;
+        position: relative;
+        top: -7.5px;
 
-        .katex-html .base
-        {
-            margin-bottom: 15px;
-            &:last-child { margin-bottom: 0; }
-        }
+        .base { margin: 15px 0; }
 
         overflow: hidden;
         overflow-x: auto;
+
+        @include bp.max(mini)
+        {
+            overflow: scroll;
+        }
 
         @extend %scrollbar;
 
         &::-webkit-scrollbar
         {
-            height: 7px !important;
+            height: 7px;
 
             @include bp.max(mini)
             {
-                height: 5px !important;
+                height: 5px;
             }
         }
 
