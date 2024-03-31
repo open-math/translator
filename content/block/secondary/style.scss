@@ -4,6 +4,9 @@
 
 [data-content] section.secondary
 {
+    --gap: 30px;
+    --icon: 63px;
+
     display: flex;
     align-items: start;
     gap: 30px;
@@ -41,8 +44,11 @@
         border-radius: size.$borderRadius;
         border-top-left-radius: 0;
 
+        max-width: calc(100% - var(--gap) - var(--icon));
+
         @include bp.max(mini)
         {
+            max-width: 100%;
             border-top-left-radius: size.$borderRadius;
         }
 

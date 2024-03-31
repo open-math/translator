@@ -1,6 +1,6 @@
 {
     "name": "translator",
-    "version": "1.1.21",
+    "version": "1.1.22",
     "main": "./dist/node/core/index.js",
     "types": "./dist/node/core/index.d.ts",
     "exports": {

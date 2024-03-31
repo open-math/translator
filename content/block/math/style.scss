@@ -53,7 +53,7 @@
         }
     }
 
-    .mathDisplay .katex > .katex-html
+    .mathDisplay:not(.freeze) .katex > .katex-html
     {
         white-space: normal;
     }
